@@ -7,6 +7,7 @@ import { buildProject } from '../src/build.mjs';
 import { checkJsxText } from '../src/check-jsx.mjs';
 import { loadConfig } from '../src/config.mjs';
 import { formatDiagnostics } from '../src/diagnostics.mjs';
+import { inspectIntegrations } from '../src/integrations/index.mjs';
 import { lintTypeScriptFiles } from '../src/lint-ts.mjs';
 import { runHostProbe, runLiveParse, runReservedProbe } from '../src/live.mjs';
 import { reservedData } from '../src/reserved.mjs';
@@ -37,10 +38,10 @@ function usage() {
     '  estc probe-host [--launch] [--out FILE] [--json]',
     '  estc probe-reserved [--launch] [--out FILE] [--json]',
     '',
-    'The normal validation order is: TypeScript host types -> source dialect lint ->',
-    'esbuild ES5 bundle -> bundle-local compatibility transforms -> ExtendScript-safe',
-    're-emission -> parser-output repair -> strict ES3/static gate -> optional',
-    'compile-only live Illustrator parse -> project-specific runtime tests.'
+    'The normal build order is: TypeScript host types -> source dialect lint ->',
+    'esbuild ES5 bundle -> bundle-local compatibility transforms -> optional ESPACK',
+    'composition -> ExtendScript-safe re-emission -> strict ES3/static gate -> optional',
+    'ESMIN -> strict post-minify gate -> optional live Illustrator parse -> runtime tests.'
   ].join('\n'));
 }
 
@@ -83,8 +84,12 @@ async function doctor(flags) {
   const config = await loadConfig({ cwd: process.cwd(), configPath: flags.get('config') || null });
   const typeFile = resolveTypesForAdobe(config.hostTypes);
   const typeAudit = auditTypeSources(config.hostTypes);
+  const integrations = inspectIntegrations(config);
+  const integrationOk =
+    (!integrations.espack.enabled || integrations.espack.configurationValid) &&
+    (!integrations.esmin.enabled || integrations.esmin.configurationValid);
   const info = {
-    ok: typeAudit.ok,
+    ok: typeAudit.ok && integrationOk,
     node: process.version,
     platform: process.platform,
     package: JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')).version,
@@ -110,6 +115,7 @@ async function doctor(flags) {
       parser: 'Acorn ecmaVersion 3',
       futureReservedCount: reservedData.futureReserved.length
     },
+    integrations,
     config: {
       path: config.configPath,
       host: config.host,
@@ -118,6 +124,14 @@ async function doctor(flags) {
       target: config.target,
       compatibilityTransforms: config.compatibilityTransforms,
       compatibilityShims: config.compatibilityShims,
+      espack: config.espack ? {
+        mode: config.espack.mode || null,
+        deferB64: config.espack.deferB64 || false
+      } : null,
+      esmin: config.esmin ? {
+        profile: config.esmin.profile || null,
+        config: config.esmin.config || null
+      } : null,
       live: config.live
     }
   };
@@ -233,6 +247,18 @@ async function buildCommand(flags) {
     console.log('  TypeScript inputs: ' + result.inputs.length);
     console.log('  compatibility transforms: ' + config.compatibilityTransforms.join(', '));
     console.log('  compatibility shims: ' + (config.compatibilityShims.length ? config.compatibilityShims.join(', ') : 'none'));
+    if (result.integrations.espack) {
+      const p = result.integrations.espack;
+      console.log('  ESPACK: ' + p.mode + ' via v' + (p.version || '?') +
+        ', base64=' + p.base64Mode +
+        (p.safeRuntimeOverride ? ' (ESTC-compatible runtime override)' : '') +
+        ', loader=' + p.loaderBytes + ' B');
+    }
+    if (result.integrations.esmin) {
+      const m = result.integrations.esmin;
+      console.log('  ESMIN: v' + (m.version || '?') + ' ' + (m.profile || path.basename(m.config)) +
+        ', ' + m.beforeBytes + ' -> ' + m.bytes + ' B (' + m.reductionPercent.toFixed(2) + '% reduction)');
+    }
     console.log('  live parse: ' + (result.live ? 'yes' : 'no'));
     if (result.diagnostics.length) console.log(formatDiagnostics(result.diagnostics));
   }

@@ -40,6 +40,21 @@ export default {
   allowJson: false,
   allowIncludes: false,
 
+  // Optional distribution stages. When enabled, ESPACK composes before ESMIN;
+  // ESTC validates both the assembled and final minified artifacts.
+  //
+  // espack: {
+  //   mode: 'merge',
+  //   manifests: ['../eson/dist/ESON.manifest.json', '../esarr/dist/ESARR.manifest.json'],
+  //   manifestOut: 'dist/MyLibrary.espack.json'
+  // },
+  // esmin: {
+  //   profile: 'conservative',
+  //   keepIntermediate: true
+  // },
+  espack: null,
+  esmin: null,
+
   // CI/default builds stay static. Enable only on a Windows host with Illustrator.
   live: false,
   liveLaunch: false

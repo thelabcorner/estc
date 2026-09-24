@@ -10,6 +10,7 @@ import { checkJsxText } from '../src/check-jsx.mjs';
 import { loadConfig } from '../src/config.mjs';
 import { localizeEsbuildRuntimeHelpers } from '../src/esbuild-compat.mjs';
 import { lintTypeScriptFiles } from '../src/lint-ts.mjs';
+import { composeEspack, inspectIntegrations, minifyWithEsmin } from '../src/integrations/index.mjs';
 import { repairExtendScriptSwitches } from '../src/output-compat.mjs';
 import { ES3_RESERVED, reservedData } from '../src/reserved.mjs';
 import { auditTypeSources } from '../src/type-audit.mjs';
@@ -421,4 +422,195 @@ test('build fixture completes full static pipeline without mutating host built-i
   assert.equal(result.compatibilityTransforms[0].changed, true);
   const checked = checkJsxText(emitted, { file: result.outfile });
   assert.equal(checked.ok, true, JSON.stringify(checked.diagnostics, null, 2));
+});
+
+
+test('ESPACK/ESMIN integration config resolves roots and tool provenance', async () => {
+  const cwd = path.join(FIXTURES, 'integration');
+  const config = await loadConfig({ cwd });
+  assert.ok(config.espack);
+  assert.ok(config.esmin);
+  assert.equal(config.espack.manifests.length, 2);
+  assert.equal(path.isAbsolute(config.espack.manifests[0]), true);
+  assert.equal(path.isAbsolute(config.espack.root), true);
+  assert.equal(path.isAbsolute(config.esmin.root), true);
+
+  const integrations = inspectIntegrations(config);
+  assert.equal(integrations.espack.enabled, true);
+  assert.equal(integrations.espack.available, true);
+  assert.equal(integrations.espack.version, '9.9.1');
+  assert.equal(integrations.espack.mode, 'merge');
+  assert.equal(integrations.esmin.enabled, true);
+  assert.equal(integrations.esmin.available, true);
+  assert.equal(integrations.esmin.version, '8.8.2');
+  assert.equal(integrations.esmin.configAvailable, true);
+});
+
+test('ESPACK defer-b64 contract fails closed without an explicit shared codec contract', async () => {
+  const cwd = path.join(FIXTURES, 'integration');
+  const config = await loadConfig({ cwd });
+  config.espack = { ...config.espack, sharedBase64: null };
+  assert.throws(
+    () => composeEspack(config),
+    /deferB64 requires espack\.sharedBase64/
+  );
+});
+
+test('build pipeline composes ESPACK before ESMIN and revalidates the final artifact', async () => {
+  const cwd = path.join(FIXTURES, 'integration');
+  const dist = path.join(cwd, 'dist');
+  fs.rmSync(dist, { recursive: true, force: true });
+  try {
+    const config = await loadConfig({ cwd });
+    const result = await buildProject(config);
+
+    assert.equal(fs.existsSync(result.outfile), true);
+    assert.ok(result.integrations.espack);
+    assert.equal(result.integrations.espack.mode, 'merge');
+    assert.equal(result.integrations.espack.manifestCount, 2);
+    assert.equal(result.integrations.espack.deferB64, true);
+    assert.equal(result.integrations.espack.version, '9.9.1');
+
+    assert.ok(result.integrations.esmin);
+    assert.equal(result.integrations.esmin.version, '8.8.2');
+    assert.equal(result.integrations.esmin.profile, 'conservative');
+    assert.equal(result.integrations.esmin.skipIncludes, true);
+    assert.ok(result.integrations.esminIntermediate);
+    assert.equal(fs.existsSync(result.integrations.esminIntermediate), true);
+    assert.equal(fs.existsSync(config.espack.manifestOut), true);
+
+    const emitted = fs.readFileSync(result.outfile, 'utf8');
+    const intermediate = fs.readFileSync(result.integrations.esminIntermediate, 'utf8');
+    assert.equal(emitted.startsWith('#target illustrator\n'), true);
+    assert.match(emitted, /ESTC_SHARED_B64_STUB/);
+    assert.match(emitted, /ESPACK_STUB/);
+    assert.match(emitted, /ESMIN_STUB/);
+    assert.match(emitted, /["']float["']\s*:/);
+    assert.doesNotMatch(emitted, /\.float\b/);
+    assert.doesNotMatch(intermediate, /ESMIN_STUB/);
+
+    const sharedAt = emitted.indexOf('ESTC_SHARED_B64_STUB');
+    const espackAt = emitted.indexOf('ESPACK_STUB');
+    const appAt = emitted.indexOf('IntegrationFixture');
+    assert.ok(sharedAt >= 0 && espackAt > sharedAt && appAt > espackAt,
+      'composition order must be shared base64 -> ESPACK -> consumer bundle');
+
+    const checked = checkJsxText(emitted, { file: result.outfile });
+    assert.equal(checked.ok, true, JSON.stringify(checked.diagnostics, null, 2));
+  } finally {
+    fs.rmSync(dist, { recursive: true, force: true });
+  }
+});
+
+
+test('ESPACK inline mode replaces a stale vendored codec through ESB64_RUNTIME_PATH', async () => {
+  const cwd = path.join(FIXTURES, 'integration');
+  const config = await loadConfig({ cwd });
+  config.espack = {
+    ...config.espack,
+    deferB64: false,
+    sharedBase64: null,
+    manifestOut: null,
+    esb64Runtime: path.join(FIXTURES, 'tools', 'esb64', 'dist', 'vendor-esb64-runtime.js')
+  };
+  const result = composeEspack(config);
+  assert.equal(result.metadata.base64Mode, 'inline');
+  assert.equal(result.metadata.safeRuntimeOverride, true);
+  assert.equal(result.metadata.deferB64, false);
+  assert.match(result.text, /ESB64_SAFE_RUNTIME_STUB/);
+});
+
+test('ESTC-owned ESMIN stage refuses to re-resolve includes from a temporary path', async () => {
+  const cwd = path.join(FIXTURES, 'integration');
+  const config = await loadConfig({ cwd });
+  config.esmin = { ...config.esmin, skipIncludes: false };
+  const inspected = inspectIntegrations(config);
+  assert.equal(inspected.esmin.configurationValid, false);
+  assert.match(inspected.esmin.issues.join('\n'), /skipIncludes=true/);
+  assert.throws(
+    () => minifyWithEsmin('#target illustrator\nvar x=1;\n', config),
+    /requires esmin\.skipIncludes=true/
+  );
+});
+
+
+test('ESPACK manifest sidecar is not committed when post-ESMIN validation fails', async () => {
+  const cwd = path.join(FIXTURES, 'integration');
+  const dist = path.join(cwd, 'dist-transaction');
+  fs.rmSync(dist, { recursive: true, force: true });
+  try {
+    const config = await loadConfig({ cwd });
+    config.outfile = path.join(dist, 'rejected.jsx');
+    config.espack = {
+      ...config.espack,
+      manifestOut: path.join(dist, 'rejected.espack.json')
+    };
+    config.esmin = {
+      ...config.esmin,
+      config: path.join(FIXTURES, 'tools', 'esmin', 'configs', 'invalid-output.json'),
+      profile: null,
+      keepIntermediate: false
+    };
+
+    await assert.rejects(
+      () => buildProject(config),
+      /Post-ESMIN JSX compatibility check failed/
+    );
+    assert.equal(fs.existsSync(config.outfile), false);
+    assert.equal(fs.existsSync(config.espack.manifestOut), false);
+  } finally {
+    fs.rmSync(dist, { recursive: true, force: true });
+  }
+});
+
+
+test('ESPACK shared codec cannot silently duplicate an inline runtime', async () => {
+  const cwd = path.join(FIXTURES, 'integration');
+  const config = await loadConfig({ cwd });
+  config.espack = {
+    ...config.espack,
+    deferB64: false,
+    sharedBase64: { code: 'var SHARED_CODEC=1;' },
+    manifestOut: null
+  };
+  const inspected = inspectIntegrations(config);
+  assert.equal(inspected.espack.configurationValid, false);
+  assert.match(inspected.espack.issues.join('\n'), /conflicts with deferB64=false/);
+  assert.throws(
+    () => composeEspack(config),
+    /sharedBase64 requires deferred-base64 mode/
+  );
+});
+
+
+test('ESPACK auto shared-base64 sentinel survives config normalization', async () => {
+  const cwd = path.join(FIXTURES, 'integration');
+  const config = await loadConfig({
+    cwd,
+    configPath: 'extendscript.auto.config.mjs'
+  });
+  assert.equal(config.espack.sharedBase64, 'auto');
+  assert.equal(config.espack.deferB64, 'auto');
+
+  const inspected = inspectIntegrations(config);
+  assert.equal(inspected.espack.configurationValid, true);
+  assert.equal(inspected.espack.deferB64Supported, true);
+
+  const composed = composeEspack(config);
+  assert.equal(composed.metadata.deferB64, true);
+  assert.equal(composed.metadata.base64Mode, 'shared');
+  assert.match(composed.sharedBase64.join('\n'), /ESB64_SAFE_RUNTIME_STUB/);
+
+  const inlineAuto = {
+    ...config,
+    espack: {
+      ...config.espack,
+      deferB64: 'auto',
+      sharedBase64: null,
+      manifestOut: null
+    }
+  };
+  const inline = composeEspack(inlineAuto);
+  assert.equal(inline.metadata.deferB64, false);
+  assert.equal(inline.metadata.base64Mode, 'inline');
 });

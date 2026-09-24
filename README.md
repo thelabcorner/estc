@@ -6,8 +6,8 @@
 
 ### Host-aware typing, conservative ES3 emission, static compatibility gates, and optional live Illustrator parsing
 
-[![Version](https://img.shields.io/badge/version-v0.1.0-blue)](https://github.com/thelabcorner/estc/releases/tag/v0.1.0)
-[![Static tests](https://img.shields.io/badge/static%20tests-29%2F29-success)](#validation)
+[![Version](https://img.shields.io/badge/version-v0.2.0-blue)](https://github.com/thelabcorner/estc/releases/tag/v0.2.0)
+[![Static tests](https://img.shields.io/badge/static%20tests-37%2F37-success)](#validation)
 [![Workspace audit](https://img.shields.io/badge/ES*%20artifacts-29%2F29-success)](#validation)
 [![Illustrator](https://img.shields.io/badge/Illustrator-30.6.0%20live--parsed-success)](#compatibility)
 [![Node](https://img.shields.io/badge/Node-%3E%3D20-blue)](#compatibility)
@@ -133,11 +133,13 @@ ESTC makes each boundary explicit and independently testable.
 - **ES3 source linting** — catches reserved runtime bindings, unsafe unquoted object keys, and export aliases before bundling.
 - **Deterministic ES5 bundling** — esbuild 0.28.2 produces one IIFE boundary before compatibility normalization.
 - **Bundle-local helper localization** — recurring generated-helper hazards are rewritten locally; ESTC does not patch persistent `Object`, `Function.prototype`, or other Illustrator globals.
+- **ESPACK composition** — optional ESPACK build/manifest-merge stages are inserted before distribution transforms, with tool discovery, provenance reporting, safe ESB64 runtime substitution, and capability-gated shared-base64 mode.
+- **ESMIN final-artifact minification** — optional ESMin runs only after ESPACK and ESTC assembly; ESTC then re-parses and re-audits the exact minified bytes.
 - **ExtendScript-safe re-emission** — UglifyJS 3.19.3 re-emits quoted keys, legacy-safe property access, ASCII-only output, explicit braces, and semicolons without compression or mangling.
 - **Illustrator parser-output repair** — AST-scoped repair handles live-proven switch/ASI parser edge cases while preserving case-expression evaluation order.
 - **Strict emitted-JSX gate** — Acorn in `ecmaVersion: 3` plus explicit ExtendScript hazard analysis rejects syntax/global leakage that a normal modern parser would permit.
 - **Raw ExtendScript mode** — E4X and Adobe/Mozilla extensions can receive compatibility scanning without a false claim of ordinary ES3 grammar conformance.
-- **Compile-only live parsing** — optional Windows/Illustrator verification sends the complete emitted body through `DoJavaScript` inside a non-invoked function expression.
+- **Compile-only live parsing** — optional Windows/Illustrator verification sends the complete final artifact through `DoJavaScript` inside a non-invoked function expression.
 - **Versioned host evidence** — reserved-word matrices, host-feature observations, and declaration-provenance evidence are stored separately from normative grammar rules.
 - **Workspace audit** — report-first auditing can summarize many release/runtime artifacts without mutating the projects being inspected.
 
@@ -154,43 +156,42 @@ TypeScript source
 esbuild IIFE bundle (ES5)
     |
     | 3. localize known generated helper dependencies inside the bundle
-    |    (never patch persistent Illustrator built-ins)
     | 4. remove generated strict-mode prologues
     v
-UglifyJS compatibility re-emission
+Project prelude + ESTC shims
     |
-    | extendscript:true
-    | ie:true
-    | quote_keys:true
-    | keep_quoted_props:true
-    | semicolons:true
-    | braces:true
-    | ascii_only:true
-    | compress:false
-    | mangle:false
+    | 5. optional ESPACK build/manifest merge
+    |    - normal inline mode: current ESB64 runtime supplied through
+    |      ESB64_RUNTIME_PATH when one is resolvable
+    |    - shared mode: one ESB64 runtime + --defer-b64 when supported
     v
-Illustrator parser-output repair
+UglifyJS ExtendScript-safe compatibility re-emission
     |
-    | 5. repair live-proven switch/ASI edge cases without changing
-    |    case-expression evaluation order
+    | compress:false / mangle:false
+    | reserved keys quoted, ASCII-only, explicit braces/semicolons
+    | AST-scoped Illustrator switch repair
     v
-Portable JSX
+Pre-distribution ESTC gate
     |
-    | 6. strict ES3 grammar + explicit reserved-property checks
-    | 7. ExtendScript/Illustrator runtime hazard checks
+    | 6. strict ES3 grammar + reserved-property checks
+    | 7. runtime/global-patch hazard checks
     v
-Static PASS
+Optional ESMIN conservative minification
     |
-    | 8. optional Windows/Illustrator compile-only parse
+    | 8. complete assembled artifact; includes are not re-resolved here
     v
-Live parse PASS
+Post-ESMIN ESTC gate
     |
-    | 9. project-specific runtime / differential tests
+    | 9. re-check the actual distributable bytes
     v
-Release evidence
+Optional Illustrator compile-only live parse
+    |
+    | 10. final artifact only
+    v
+Project-specific runtime / differential tests
 ```
 
-The stages are deliberately separate. A type declaration is not parser evidence; parser evidence is not runtime-behavior evidence.
+ESPACK therefore always composes **before** ESMIN. ESTC treats both tools as transformation boundaries rather than trust boundaries: tool output must pass the same conservative gate as ESTC's own output. A type declaration is not parser evidence; parser evidence is not runtime-behavior evidence.
 
 ---
 
@@ -252,7 +253,7 @@ Adobe's MIT license for that reference file is retained beside it.
 
 ## Get the Release
 
-**[ESTC v0.1.0](https://github.com/thelabcorner/estc/releases/tag/v0.1.0)** is the first public pre-release.
+**[ESTC v0.2.0](https://github.com/thelabcorner/estc/releases/tag/v0.2.0)** adds first-class ESPACK composition and ESMIN final-artifact integration while preserving ESTC's fail-closed compatibility gates.
 
 The release includes a deterministic source archive and checksum manifest. ESTC is not currently published to npm; source consumers should pin the Git tag rather than tracking mutable `main`.
 
@@ -311,6 +312,10 @@ export default {
   allowJson: false,
   allowIncludes: false,
 
+  // Optional distribution stages:
+  espack: null,
+  esmin: null,
+
   live: false,
   liveLaunch: false
 };
@@ -329,6 +334,56 @@ node bin/estc.mjs build --config ./extendscript.config.mjs --live --launch
 ```
 
 Project-specific behavioral tests remain a separate release requirement. A successful ESTC parse/build does not prove application semantics.
+
+
+### Distribution with ESPACK + ESMIN
+
+ESTC can own the build ordering while keeping ESPACK and ESMIN as separately installed tools:
+
+```js
+export default {
+  entry: "src/index.ts",
+  outfile: "dist/tool.min.jsx",
+  globalName: "MyTool",
+  target: "illustrator",
+
+  espack: {
+    mode: "merge",
+    manifests: [
+      "../eson/dist/ESON.manifest.json",
+      "../esarr/dist/ESARR.manifest.json"
+    ],
+    name: "my-tool",
+    manifestOut: "dist/my-tool.espack.json"
+  },
+
+  esmin: {
+    profile: "conservative",
+    keepIntermediate: true
+  }
+};
+```
+
+The default ESPACK lane is self-contained. ESTC resolves an ESB64 runtime from, in order, `espack.esb64Runtime`, `ESB64_RUNTIME_PATH`, an installed `esb64` package, or a sibling `esb64/` project. When found, that validated runtime is supplied to ESPACK through its existing `ESB64_RUNTIME_PATH` hook instead of accepting a stale vendored runtime.
+
+A newer ESPACK that exposes `--defer-b64` can use one shared ESB64 copy:
+
+```js
+espack: {
+  mode: "merge",
+  manifests: ["dist/A.manifest.json", "dist/B.manifest.json"],
+  deferB64: true,
+  sharedBase64: "auto"
+}
+```
+
+`doctor` reports whether the resolved ESPACK supports that capability. ESTC fails closed if shared mode is requested against a tool that does not expose it.
+
+ESPACK itself is resolved from `espack.root`, `ESPACK_ROOT`, an installed `espack` package, or a sibling `espack/` directory. ESMIN uses the equivalent `esmin.root` / `ESMIN_ROOT` / installed-package / sibling lookup. Neither tool is copied into ESTC.
+
+ESMIN receives the already-composed artifact and therefore runs with include expansion disabled. Relative `#include` ownership must be resolved before this stage; ESTC refuses `esmin.skipIncludes: false` rather than resolving includes relative to a temporary file. When `keepIntermediate` is enabled, the pre-ESMIN artifact is retained beside the final output (or at `esmin.intermediateOutfile`).
+
+The final `outfile` is always the post-ESMIN distributable. ESTC validates once before ESMIN and again afterward, and any optional live Illustrator parse runs against the final bytes. Requested ESPACK manifest sidecars are staged privately and written to `manifestOut` only after those downstream gates succeed, so a rejected final build cannot leave a newly published manifest behind.
 
 ---
 
@@ -349,7 +404,7 @@ estc probe-reserved [--launch] [--out FILE] [--json]
 
 ### `doctor`
 
-Reports the active Node/toolchain versions, host type profile, grammar baseline, compatibility policy, and resolved configuration.
+Reports the active Node/toolchain versions, host type profile, grammar baseline, compatibility policy, resolved configuration, and ESPACK/ESMIN discovery/capability status when those stages are enabled.
 
 ### `check`
 
@@ -365,7 +420,7 @@ Verifies the pinned Adobe CEP declaration snapshot and inventories declaration-n
 
 ### `build`
 
-Runs the complete config-driven pipeline and writes the final JSX artifact.
+Runs the complete config-driven pipeline, including optional ESPACK composition and ESMIN final-artifact minification, then writes the post-validation distributable JSX.
 
 ### `audit-workspace`
 
@@ -400,6 +455,8 @@ Key options:
 | `prelude` / `footer` | `[]` | raw JSX fragments/files |
 | `allowJson` | `false` | suppress JSON-global warning only when supplied/verified |
 | `allowIncludes` | `false` | whether unresolved `#include` is acceptable |
+| `espack` | `null` | optional ESPACK build/merge stage; accepts tool discovery, manifests/embeds, ESB64-runtime, and shared-base64 options |
+| `esmin` | `null` | optional ESMIN final-artifact stage; conservative profile by default, with optional retained pre-minify artifact |
 | `live` | `false` | compile-only Illustrator parse during build |
 | `liveLaunch` | `false` | permit the live verifier to launch Illustrator |
 
@@ -411,15 +468,19 @@ Paths are resolved relative to the config file.
 
 | Check | Command | Result |
 |---|---|---|
-| Static test suite | `npm test` | 29/29 pass |
+| Static test suite | `npm test` | 37/37 pass |
 | Toolchain/environment audit | `node bin/estc.mjs doctor --json` | pass on Node v22.23.2 / Windows x64 |
 | Type provenance/parity | `node bin/estc.mjs audit-types --json` | pinned Adobe blob verified; 412-name Types-for-Adobe profile inventoried |
 | Full portable gate | `npm run verify` | pass |
+| ESPACK + ESMIN sibling smoke | `npm run integration:siblings` | real ESON/ESARR manifests + ESPACK + ESB64 runtime + ESMIN; final ESTC gate passes |
+| ESPACK + ESMIN inline live smoke | `npm run integration:siblings:live` | 207,875 B assembled → 201,318 B final; final minified artifact live-parses in Illustrator 30.6.0 |
+| ESPACK shared-base64 live smoke | current sibling ESPACK with `deferB64: "auto"`, `sharedBase64: "auto"` | 209,910 B assembled → 203,029 B final; one shared ESB64 runtime, manifest committed only after final live pass |
+| ESPACK tagged compatibility | isolated `v0.4.1` archive + ESMIN v1.0.0 | 207,269 B assembled → 201,048 B final; safe ESB64 runtime override active |
 | ES* workspace audit | `node bin/estc.mjs audit-workspace --json` | 29/29 primary release/runtime artifacts pass, 0 errors |
 | Live parser fixture | config-driven build with `--live` | pass on Illustrator 30.6.0 / ExtendScript 4.5.6 |
 | ESRAND behavioral reference | project release gate | 11/11 exact live groups on Illustrator 30.6.0 / ExtendScript 4.5.6 |
 
-The 29 static tests cover reserved identifiers/keys/properties, raw-mode behavior, lexical-scope-aware global detection, missing built-ins, feature-guard scoping, explicit global-patch ownership, TypeScript source linting, compatibility re-emission, switch parser repair, generated-helper localization, Adobe type-source provenance, workspace manifest aggregation, and a complete config-driven build fixture.
+The 37 static tests cover the original grammar/runtime gates plus ESPACK/ESMIN discovery, capability gating, build ordering, shared-base64 contracts, duplicate-runtime prevention, safe ESB64 runtime substitution, transactional ESPACK sidecars, post-minification revalidation, and ESMIN include-boundary ownership.
 
 The ES* workspace audit is ecosystem evidence, not a requirement for third-party ESTC users. Its manifest references sibling projects that are not part of this repository.
 
@@ -433,8 +494,8 @@ Measured on Windows x64 with Node v22.23.2 on 2026-09-24:
 
 | Lane | Result |
 |---|---:|
-| 29-test static suite | 777 ms |
-| Full config-driven build fixture within the suite | 159 ms |
+| 37-test static suite | 1.23 s |
+| Full config-driven build fixture within the suite | 147 ms |
 
 These figures are development-machine measurements, not cross-platform guarantees. Project compilation time scales with TypeScript graph size, bundle size, normalization work, and optional live-host startup/COM latency.
 
@@ -446,7 +507,8 @@ ESTC is a local build tool with an optional Adobe host boundary.
 
 - **Static `check`, `lint-ts`, `doctor`, and `audit-types` do not execute target JSX.**
 - **`build` executes the configured local Node toolchain** and reads project-owned config/prelude/footer files; treat configuration files as trusted build code.
-- **Compile-only `--live` parsing strips Adobe preprocessor directives and sends the emitted body to Illustrator inside a non-invoked function expression.** Its purpose is parser acceptance without installing or invoking the project's globals.
+- **Optional ESPACK/ESMIN stages execute separately installed local tooling.** ESTC does not treat their output as trusted: it validates the assembled pre-ESMIN artifact and the post-ESMIN distributable independently.
+- **Compile-only `--live` parsing strips Adobe preprocessor directives and sends the final emitted body to Illustrator inside a non-invoked function expression.** Its purpose is parser acceptance without installing or invoking the project's globals.
 - **`probe-host` and `probe-reserved` intentionally execute controlled diagnostic probes** in the installed host and should be treated as active evidence-generation commands.
 - **`audit-workspace` is report-first** and does not rewrite, clean, reset, or otherwise mutate audited sibling repositories.
 - **Generated helper compatibility is bundle-local.** ESTC does not silently patch persistent `Object`, `Function.prototype`, or other host built-ins.
@@ -468,6 +530,8 @@ Security reports should use GitHub's private vulnerability reporting for this re
 | Adobe Illustrator 30.6.0 | live parser/probe evidence recorded |
 | ExtendScript 4.5.6 | live parser/probe evidence recorded |
 | Illustrator type profile | Types-for-Adobe `Illustrator/2022` baseline + optional verified overlays |
+| ESPACK | v0.4.1 tagged merge path validated with ESTC's ESB64 runtime override; newer `--defer-b64` lane capability-gated |
+| ESMIN | v1.0.0 conservative final-artifact path validated |
 | E4X / ExtendScript-only syntax | supported by `--raw` scanning; no ordinary ES3 grammar claim |
 | Other Adobe hosts | static policies may be reusable, but current live evidence is Illustrator-specific |
 
@@ -554,6 +618,15 @@ npm run audit:types
 npm run selfcheck
 ```
 
+Optional sibling-tool integration smoke:
+
+```bash
+npm run integration:siblings
+npm run integration:siblings:live
+```
+
+The sibling smoke composes real ESON/ESARR ESPACK manifests, routes ESPACK through the current ESB64 runtime, runs real ESMIN, and revalidates the final artifact. It prints `SKIP` in a standalone clone where those sibling projects are absent.
+
 Workspace-only ES* ecosystem audit:
 
 ```bash
@@ -583,14 +656,17 @@ estc/
 ├── projects/
 │   ├── esrand.config.mjs         ecosystem integration fixture
 │   └── workspace-audit.json      optional sibling-project audit manifest
-├── scripts/                      evidence/probe support scripts
+├── scripts/
+│   ├── illustrator-probe.ps1     live host probe support
+│   └── sibling-integration-smoke.mjs
 ├── src/
-│   ├── build.mjs                 config-driven compiler pipeline
+│   ├── build.mjs                 config-driven compiler/distribution pipeline
 │   ├── check-jsx.mjs             emitted-JSX static gate
+│   ├── integrations/             ESPACK/ESMIN discovery + process adapters
 │   └── ...                       lint, normalization, live-host, provenance modules
 ├── tests/
-│   ├── fixtures/
-│   └── static.test.mjs           29-case static/build suite
+│   ├── fixtures/                 portable tool/integration fixtures
+│   └── static.test.mjs           37-case static/build/integration suite
 ├── types/                         verified local declaration overlays
 ├── vendor/
 │   └── adobe-cep/                pinned Adobe CEP declaration reference + license
@@ -607,6 +683,9 @@ estc/
 - A compile-only live parse proves parser acceptance on that host/version; it does not prove project behavior.
 - `--raw` deliberately gives up a normal ES3 grammar claim so E4X/ExtendScript-specific syntax can still be scanned.
 - The bundled ES* workspace audit manifest is an ecosystem integration aid, not a portable requirement for ESTC users.
+- ESPACK shared-base64 mode requires a resolved ESPACK that actually exposes `--defer-b64`; ESTC probes that capability and otherwise keeps the self-contained inline lane.
+- ESTC-owned ESMIN execution requires `skipIncludes: true`; include expansion must already be complete before the final-artifact minification stage.
+- ESPACK, ESMIN, and ESB64 remain separately installed tools with their own release and license boundaries; ESTC does not vendor them.
 - ESTC does not attempt to polyfill arbitrary missing host APIs. Project-owned compatibility behavior must remain explicit.
 
 ---
@@ -639,5 +718,7 @@ Source references used by the project:
 ESTC is licensed under the [MIT License](LICENSE).
 
 The pinned Adobe CEP reference file under `vendor/adobe-cep/` remains under Adobe's MIT license, copied alongside the file as `LICENSE.adobe-cep.txt`.
+
+Optional ESPACK, ESMIN, and ESB64 integrations execute separately installed tools; those projects retain their own licenses and are not redistributed as part of ESTC.
 
 <p align="center"><small>ESTC: modern authoring in, conservative ExtendScript out, with each compatibility claim independently testable.</small></p>

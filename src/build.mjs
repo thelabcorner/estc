@@ -11,6 +11,7 @@ import { runLiveParse } from './live.mjs';
 import { localizeEsbuildRuntimeHelpers } from './esbuild-compat.mjs';
 import { repairExtendScriptSwitches } from './output-compat.mjs';
 import { builtInShims } from './shims.mjs';
+import { composeEspack, minifyWithEsmin } from './integrations/index.mjs';
 
 function stripGeneratedStrict(code) {
   return String(code)
@@ -53,6 +54,27 @@ function throwDiagnostics(label, diagnostics) {
   const err = new Error(label + '\n' + formatDiagnostics(diagnostics));
   err.diagnostics = diagnostics;
   throw err;
+}
+
+function checkFinalText(text, config, label) {
+  const checked = checkJsxText(text, {
+    file: config.outfile,
+    mode: 'conservative',
+    target: config.target,
+    requireTarget: config.requireTarget,
+    allowIncludes: config.allowIncludes,
+    allowJson: config.allowJson,
+    allowedMissingBuiltins: config.allowedMissingBuiltins || [],
+    allowedGlobalPatches: config.allowedGlobalPatches || []
+  });
+  if (!checked.ok) throwDiagnostics(label, checked.diagnostics);
+  return checked;
+}
+
+function defaultIntermediatePath(outfile) {
+  const ext = path.extname(outfile);
+  if (!ext) return outfile + '.unminified';
+  return outfile.slice(0, -ext.length) + '.unminified' + ext;
 }
 
 export async function buildProject(config, options = {}) {
@@ -104,25 +126,57 @@ export async function buildProject(config, options = {}) {
   const prelude = resolveFragments(config.prelude, config.cwd);
   const footer = resolveFragments(config.footer, config.cwd);
   const shims = builtInShims(config.compatibilityShims);
-  let body = [...prelude, ...shims, emitted, ...footer].filter(Boolean).join('\n');
+  const espack = composeEspack(config);
+  const espackParts = espack ? [...espack.sharedBase64, espack.text] : [];
+
+  // Canonical composition order:
+  //   project prelude -> ESTC shims -> optional shared ESB64 -> ONE ESPACK loader
+  //   -> TypeScript consumer/facade bundle -> footer.
+  // ESPACK therefore composes before ESMIN, matching ESPACK's documented
+  // pre-minify/pre-obfuscate contract.
+  let body = [...prelude, ...shims, ...espackParts, emitted, ...footer].filter(Boolean).join('\n');
   body = stripGeneratedStrict(body);
   if (config.normalize !== false) body = normalizeForExtendScript(body);
 
-  let finalText = body;
-  if (config.requireTarget !== false) finalText = '#target ' + config.target + '\n' + body + '\n';
+  let preDistributionText = body;
+  if (config.requireTarget !== false) preDistributionText = '#target ' + config.target + '\n' + body + '\n';
 
-  const checked = checkJsxText(finalText, {
-    file: config.outfile,
-    mode: 'conservative',
-    target: config.target,
-    requireTarget: config.requireTarget,
-    allowIncludes: config.allowIncludes,
-    allowJson: config.allowJson,
-    allowedMissingBuiltins: config.allowedMissingBuiltins || [],
-    allowedGlobalPatches: config.allowedGlobalPatches || []
-  });
-  if (!checked.ok) throwDiagnostics('Final JSX compatibility check failed.', checked.diagnostics);
-  buildDiagnostics.push(...checked.diagnostics);
+  // Validate ESTC's own artifact before handing it to a downstream minifier.
+  const preDistributionCheck = checkFinalText(
+    preDistributionText,
+    config,
+    'Pre-distribution JSX compatibility check failed.'
+  );
+
+  const integrations = {
+    espack: espack ? espack.metadata : null,
+    esmin: null
+  };
+
+  let finalText = preDistributionText;
+  if (config.esmin) {
+    if (config.esmin.keepIntermediate) {
+      const intermediate = config.esmin.intermediateOutfile || defaultIntermediatePath(config.outfile);
+      fs.mkdirSync(path.dirname(intermediate), { recursive: true });
+      fs.writeFileSync(intermediate, preDistributionText, 'utf8');
+      integrations.esminIntermediate = intermediate;
+    }
+
+    const minified = minifyWithEsmin(preDistributionText, config);
+    finalText = minified.text;
+    integrations.esmin = minified.metadata;
+
+    // ESMIN is a transformation boundary, not a trust boundary. Re-run ESTC's
+    // strict ES3/host gate on the actual distributable bytes.
+    const finalCheck = checkFinalText(
+      finalText,
+      config,
+      'Post-ESMIN JSX compatibility check failed.'
+    );
+    buildDiagnostics.push(...finalCheck.diagnostics);
+  } else {
+    buildDiagnostics.push(...preDistributionCheck.diagnostics);
+  }
 
   if (config.live || options.live) {
     const live = runLiveParse(finalText, {
@@ -139,12 +193,23 @@ export async function buildProject(config, options = {}) {
   fs.mkdirSync(path.dirname(config.outfile), { recursive: true });
   fs.writeFileSync(config.outfile, finalText, 'utf8');
 
+  // ESPACK sidecars are staged inside the integration adapter and are only
+  // committed after every downstream transformation, static gate, and
+  // optional live parse has succeeded. A rejected build therefore cannot
+  // leave a fresh manifest advertising a final artifact that ESTC refused.
+  if (espack && espack.manifest) {
+    fs.mkdirSync(path.dirname(espack.manifest.path), { recursive: true });
+    fs.writeFileSync(espack.manifest.path, espack.manifest.text, 'utf8');
+  }
+
   return {
     outfile: config.outfile,
     bytes: Buffer.byteLength(finalText),
+    bytesBeforeMinify: Buffer.byteLength(preDistributionText),
     inputs,
     diagnostics: buildDiagnostics,
     compatibilityTransforms: transformEvidence,
+    integrations,
     live: config.live || options.live ? true : false
   };
 }

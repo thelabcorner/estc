@@ -2,6 +2,8 @@ node_modules/
 coverage/
 dist/
 tests/fixtures/build/dist/
+tests/fixtures/integration/dist/
+tests/fixtures/integration/dist-*/
 *.log
 *.tgz
 *.zip

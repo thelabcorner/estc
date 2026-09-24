@@ -1,6 +1,6 @@
 {
   "name": "extendscript-toolchain",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Deterministic TypeScript-to-Adobe-ExtendScript build, type, grammar, compatibility, and live-parse tooling",
   "license": "MIT",
@@ -30,7 +30,8 @@
   "exports": {
     ".": "./src/index.mjs",
     "./check": "./src/check-jsx.mjs",
-    "./build": "./src/build.mjs"
+    "./build": "./src/build.mjs",
+    "./integrations": "./src/integrations/index.mjs"
   },
   "scripts": {
     "test": "node --test tests/static.test.mjs",
@@ -38,6 +39,8 @@
     "selfcheck": "node bin/estc.mjs check tests/fixtures/good.jsx",
     "audit:types": "node bin/estc.mjs audit-types",
     "audit:workspace": "node bin/estc.mjs audit-workspace",
+    "integration:siblings": "node scripts/sibling-integration-smoke.mjs",
+    "integration:siblings:live": "node scripts/sibling-integration-smoke.mjs --live --launch",
     "verify": "npm test && node bin/estc.mjs doctor --json && node bin/estc.mjs audit-types --json"
   },
   "engines": {

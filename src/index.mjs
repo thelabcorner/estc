@@ -2,6 +2,7 @@ export { buildProject, normalizeForExtendScript } from './build.mjs';
 export { checkJsxText } from './check-jsx.mjs';
 export { DEFAULT_CONFIG, loadConfig } from './config.mjs';
 export { formatDiagnostics, sortDiagnostics } from './diagnostics.mjs';
+export { composeEspack, inspectEspack, inspectEsmin, inspectIntegrations, minifyWithEsmin } from './integrations/index.mjs';
 export { lintTypeScriptFiles } from './lint-ts.mjs';
 export { runHostProbe, runLiveParse, runReservedProbe } from './live.mjs';
 export { ES3_RESERVED, isEs3Reserved, reservedData } from './reserved.mjs';
