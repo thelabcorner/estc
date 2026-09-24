@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "description": "Report-first audit of primary published/runtime ExtendScript artifacts across the ES* ecosystem. Paths are relative to this manifest.",
+  "policy": {
+    "target": "illustrator",
+    "requireTarget": false,
+    "mode": "conservative",
+    "note": "No legacy compatibility exceptions are granted in the baseline manifest; failures become migration evidence."
+  },
+  "artifacts": [
+    {
+      "project": "eson",
+      "label": "standalone",
+      "path": "../../eson/dist/ESON.jsx",
+      "kind": "standalone"
+    },
+    {
+      "project": "eson",
+      "label": "vendor",
+      "path": "../../eson/dist/vendor-eson.js",
+      "kind": "vendor"
+    },
+    {
+      "project": "eson",
+      "label": "runtime",
+      "path": "../../eson/dist/ESON-runtime.jsx",
+      "kind": "runtime"
+    },
+    {
+      "project": "eson",
+      "label": "facade",
+      "path": "../../eson/dist/ESON.facade.jsx",
+      "kind": "facade"
+    },
+    {
+      "project": "eson",
+      "label": "accelerated",
+      "path": "../../eson/dist/ESON.accel.jsx",
+      "kind": "accelerated"
+    },
+    {
+      "project": "esarr",
+      "label": "standalone",
+      "path": "../../esarr/dist/ESARR.jsx",
+      "kind": "standalone"
+    },
+    {
+      "project": "esarr",
+      "label": "vendor",
+      "path": "../../esarr/dist/vendor-esarr.js",
+      "kind": "vendor"
+    },
+    {
+      "project": "esarr",
+      "label": "runtime",
+      "path": "../../esarr/dist/ESARR-runtime.jsx",
+      "kind": "runtime"
+    },
+    {
+      "project": "esarr",
+      "label": "facade",
+      "path": "../../esarr/dist/ESARR.facade.jsx",
+      "kind": "facade"
+    },
+    {
+      "project": "esarr",
+      "label": "accelerated",
+      "path": "../../esarr/dist/ESARR.accel.jsx",
+      "kind": "accelerated"
+    },
+    {
+      "project": "esb64",
+      "label": "standalone",
+      "path": "../../esb64/dist/ESB64.jsx",
+      "kind": "standalone"
+    },
+    {
+      "project": "esb64",
+      "label": "vendor",
+      "path": "../../esb64/dist/vendor-esb64.js",
+      "kind": "vendor"
+    },
+    {
+      "project": "esb64",
+      "label": "runtime",
+      "path": "../../esb64/dist/ESB64-runtime.jsx",
+      "kind": "runtime"
+    },
+    {
+      "project": "esb64",
+      "label": "facade",
+      "path": "../../esb64/dist/ESB64.facade.jsx",
+      "kind": "facade"
+    },
+    {
+      "project": "esb64",
+      "label": "accelerated",
+      "path": "../../esb64/dist/ESB64.accel.jsx",
+      "kind": "accelerated"
+    },
+    {
+      "project": "eschars",
+      "label": "standalone",
+      "path": "../../eschars/dist/ESCHARS.jsx",
+      "kind": "standalone"
+    },
+    {
+      "project": "eschars",
+      "label": "facade",
+      "path": "../../eschars/dist/ESCHARS.facade.jsx",
+      "kind": "facade"
+    },
+    {
+      "project": "eschars",
+      "label": "accelerated",
+      "path": "../../eschars/dist/ESCHARS.accel.jsx",
+      "kind": "accelerated"
+    },
+    {
+      "project": "eshttp",
+      "label": "standalone",
+      "path": "../../eshttp/dist/eshttp.jsx",
+      "kind": "standalone"
+    },
+    {
+      "project": "eshttp",
+      "label": "native-accelerator",
+      "path": "../../eshttp/dist/eshttp-native-accel.jsx",
+      "kind": "accelerated"
+    },
+    {
+      "project": "esrand",
+      "label": "standalone",
+      "path": "../../esrand/dist/ESRAND.jsx",
+      "kind": "standalone"
+    },
+    {
+      "project": "esrand",
+      "label": "vendor",
+      "path": "../../esrand/dist/vendor-esrand.js",
+      "kind": "vendor"
+    },
+    {
+      "project": "esstr",
+      "label": "standalone",
+      "path": "../../esstr/dist/ESSTR.jsx",
+      "kind": "standalone"
+    },
+    {
+      "project": "esstr",
+      "label": "vendor",
+      "path": "../../esstr/dist/vendor-esstr.js",
+      "kind": "vendor"
+    },
+    {
+      "project": "esstr",
+      "label": "runtime",
+      "path": "../../esstr/dist/ESSTR-runtime.jsx",
+      "kind": "runtime"
+    },
+    {
+      "project": "esstr",
+      "label": "facade",
+      "path": "../../esstr/dist/ESSTR.facade.jsx",
+      "kind": "facade"
+    },
+    {
+      "project": "esstr",
+      "label": "accelerated",
+      "path": "../../esstr/dist/ESSTR.accel.jsx",
+      "kind": "accelerated"
+    },
+    {
+      "project": "estimer",
+      "label": "standalone",
+      "path": "../../estimer/dist/ESTIMER.jsx",
+      "kind": "standalone"
+    },
+    {
+      "project": "estimer",
+      "label": "vendor",
+      "path": "../../estimer/dist/vendor-estimer.js",
+      "kind": "vendor"
+    }
+  ]
+}

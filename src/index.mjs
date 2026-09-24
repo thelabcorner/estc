@@ -1,0 +1,13 @@
+export { buildProject, normalizeForExtendScript } from './build.mjs';
+export { checkJsxText } from './check-jsx.mjs';
+export { DEFAULT_CONFIG, loadConfig } from './config.mjs';
+export { formatDiagnostics, sortDiagnostics } from './diagnostics.mjs';
+export { lintTypeScriptFiles } from './lint-ts.mjs';
+export { runHostProbe, runLiveParse, runReservedProbe } from './live.mjs';
+export { ES3_RESERVED, isEs3Reserved, reservedData } from './reserved.mjs';
+export { localizeEsbuildRuntimeHelpers } from './esbuild-compat.mjs';
+export { repairExtendScriptSwitches } from './output-compat.mjs';
+export { auditTypeSources, summarizeTypeAudit } from './type-audit.mjs';
+export { auditWorkspace, loadWorkspaceManifest, summarizeWorkspaceAudit } from './workspace-audit.mjs';
+export { builtInShims } from './shims.mjs';
+export { resolveTypesForAdobe, typecheckFiles } from './typecheck.mjs';

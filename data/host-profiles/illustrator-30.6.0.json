@@ -1,0 +1,39 @@
+{
+  "host": "Adobe Illustrator",
+  "appVersion": "30.6.0",
+  "scriptingVersion": "30.0",
+  "extendScriptEngineVersion": "4.5.6",
+  "observed": "2026-09-23",
+  "reservedWordEvidence": "../../evidence/illustrator-30.6-reserved-matrix.json",
+  "featureEvidence": "../../evidence/illustrator-30.6-host-features.json",
+  "reservedWordContexts": {
+    "identifier": "all ECMA-262 Edition 3 reserved/future-reserved/literal tokens rejected",
+    "parameter": "all rejected",
+    "functionName": "all rejected",
+    "unquotedObjectLiteralKey": "all rejected",
+    "dotProperty": "all accepted by Illustrator 30.6 despite strict ES3 grammar",
+    "bracketStringProperty": "all accepted"
+  },
+  "observedRuntimeCapabilities": {
+    "Object.defineProperty": true,
+    "Object.getOwnPropertyDescriptor": true,
+    "Object.getOwnPropertyNames": true,
+    "Function.prototype.bind": true,
+    "Array.isArray": false,
+    "Array.prototype.forEach": false,
+    "Object.keys": false,
+    "JSON": true,
+    "XML": true,
+    "XMLList": true,
+    "BridgeTalk": true,
+    "Window": true
+  },
+  "parserEvidenceNotes": {
+    "featureProbeParser": "Function constructor inside Illustrator",
+    "productionLiveGate": "Illustrator DoJavaScript parser over a non-invoked function expression",
+    "nestedTernaryUnparenthesized": "rejected by feature probe",
+    "reservedObjectLiteralKey": "rejected by feature probe",
+    "reservedDotProperty": "accepted by feature probe"
+  },
+  "policy": "The portable build profile does not assume these 30.6 capabilities exist on older ExtendScript hosts. Compatibility re-emission converts reserved dot properties to bracket access, quotes object-literal keys, capability-guards generated descriptor helpers and fails rather than approximating missing descriptor/live-binding semantics, avoids global prototype patching, and validates the final bundle through strict ES3 plus Illustrator's guarded live parser."
+}

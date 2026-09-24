@@ -1,0 +1,8 @@
+node_modules/
+coverage/
+dist/
+tests/fixtures/build/dist/
+*.log
+*.tgz
+*.zip
+SHA256SUMS.txt

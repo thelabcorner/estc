@@ -1,0 +1,31 @@
+{
+  "standard": "ECMA-262 3rd Edition, December 1999",
+  "section": "7.5 Reserved Words",
+  "source": "https://ecma-international.org/wp-content/uploads/ECMA-262_3rd_edition_december_1999.pdf",
+  "keywords": [
+    "break", "else", "new", "var", "case", "finally", "return", "void",
+    "catch", "for", "switch", "while", "continue", "function", "this", "with",
+    "default", "if", "throw", "delete", "in", "try", "do", "instanceof", "typeof"
+  ],
+  "futureReserved": [
+    "abstract", "enum", "int", "short", "boolean", "export", "interface", "static",
+    "byte", "extends", "long", "super", "char", "final", "native", "synchronized",
+    "class", "float", "package", "throws", "const", "goto", "private", "transient",
+    "debugger", "implements", "protected", "volatile", "double", "import", "public"
+  ],
+  "literals": ["null", "true", "false"],
+  "conservativeContextPolicy": {
+    "runtimeIdentifier": "forbidden",
+    "parameterName": "forbidden",
+    "functionName": "forbidden",
+    "unquotedObjectLiteralKey": "forbidden",
+    "quotedObjectLiteralKey": "allowed",
+    "dotPropertyName": "forbidden by strict ES3 (MemberExpression . Identifier); authors may use ergonomic dot access in TypeScript only when the build rewrites it to bracket access",
+    "bracketStringPropertyName": "allowed",
+    "typescriptExportAlias": "source-hazard: bundlers can materialize it as an unquoted namespace key"
+  },
+  "notes": [
+    "This file is the standards-derived baseline. Host-specific probes may be stricter or more permissive by context.",
+    "ExtendScript is an ECMAScript 3 extension rather than a pure ES3 implementation; do not infer host support from this list alone."
+  ]
+}

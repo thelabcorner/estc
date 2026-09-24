@@ -1,0 +1,53 @@
+{
+  "name": "extendscript-toolchain",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Deterministic TypeScript-to-Adobe-ExtendScript build, type, grammar, compatibility, and live-parse tooling",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thelabcorner/estc.git"
+  },
+  "homepage": "https://github.com/thelabcorner/estc#readme",
+  "bugs": {
+    "url": "https://github.com/thelabcorner/estc/issues"
+  },
+  "keywords": [
+    "extendscript",
+    "adobe",
+    "illustrator",
+    "typescript",
+    "es3",
+    "jsx",
+    "toolchain",
+    "compiler",
+    "static-analysis"
+  ],
+  "type": "module",
+  "bin": {
+    "estc": "./bin/estc.mjs"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./check": "./src/check-jsx.mjs",
+    "./build": "./src/build.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/static.test.mjs",
+    "doctor": "node bin/estc.mjs doctor",
+    "selfcheck": "node bin/estc.mjs check tests/fixtures/good.jsx",
+    "audit:types": "node bin/estc.mjs audit-types",
+    "audit:workspace": "node bin/estc.mjs audit-workspace",
+    "verify": "npm test && node bin/estc.mjs doctor --json && node bin/estc.mjs audit-types --json"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "acorn": "8.15.0",
+    "esbuild": "0.28.2",
+    "types-for-adobe": "7.2.6",
+    "typescript": "5.9.3",
+    "uglify-js": "3.19.3"
+  }
+}

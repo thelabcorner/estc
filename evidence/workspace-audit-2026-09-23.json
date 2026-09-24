@@ -1,0 +1,2892 @@
+{
+  "ok": false,
+  "manifest": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\extendscript-toolchain\\projects\\workspace-audit.json",
+  "generatedAt": "2026-09-24T02:18:37.020Z",
+  "live": false,
+  "totals": {
+    "artifacts": 29,
+    "passed": 0,
+    "failed": 29,
+    "errors": 227,
+    "warnings": 35
+  },
+  "diagnosticCodes": {
+    "ESTC_MISSING_BUILTIN": 116,
+    "ESTC_GLOBAL_PATCH": 90,
+    "ESTC_NONFINITE": 22,
+    "ESTC_ES3_RESERVED_DOT_PROPERTY": 16,
+    "ESTC_JSON": 8,
+    "ESTC_UNDEFINED": 5,
+    "ESTC_STRICT": 4,
+    "ESTC_ES3_RESERVED_PROPERTY": 1
+  },
+  "projects": {
+    "eson": {
+      "artifacts": 5,
+      "passed": 0,
+      "failed": 5,
+      "errors": 49,
+      "warnings": 21,
+      "diagnosticCodes": {
+        "ESTC_GLOBAL_PATCH": 20,
+        "ESTC_MISSING_BUILTIN": 18,
+        "ESTC_NONFINITE": 8,
+        "ESTC_ES3_RESERVED_DOT_PROPERTY": 10,
+        "ESTC_JSON": 8,
+        "ESTC_UNDEFINED": 5,
+        "ESTC_STRICT": 1
+      }
+    },
+    "esarr": {
+      "artifacts": 5,
+      "passed": 0,
+      "failed": 5,
+      "errors": 28,
+      "warnings": 10,
+      "diagnosticCodes": {
+        "ESTC_MISSING_BUILTIN": 18,
+        "ESTC_NONFINITE": 10,
+        "ESTC_GLOBAL_PATCH": 8,
+        "ESTC_ES3_RESERVED_PROPERTY": 1,
+        "ESTC_STRICT": 1
+      }
+    },
+    "esb64": {
+      "artifacts": 5,
+      "passed": 0,
+      "failed": 5,
+      "errors": 39,
+      "warnings": 0,
+      "diagnosticCodes": {
+        "ESTC_GLOBAL_PATCH": 20,
+        "ESTC_MISSING_BUILTIN": 18,
+        "ESTC_STRICT": 1
+      }
+    },
+    "eschars": {
+      "artifacts": 3,
+      "passed": 0,
+      "failed": 3,
+      "errors": 28,
+      "warnings": 3,
+      "diagnosticCodes": {
+        "ESTC_GLOBAL_PATCH": 16,
+        "ESTC_MISSING_BUILTIN": 12,
+        "ESTC_NONFINITE": 3
+      }
+    },
+    "eshttp": {
+      "artifacts": 2,
+      "passed": 0,
+      "failed": 2,
+      "errors": 35,
+      "warnings": 0,
+      "diagnosticCodes": {
+        "ESTC_MISSING_BUILTIN": 17,
+        "ESTC_GLOBAL_PATCH": 12,
+        "ESTC_ES3_RESERVED_DOT_PROPERTY": 6
+      }
+    },
+    "esrand": {
+      "artifacts": 2,
+      "passed": 0,
+      "failed": 2,
+      "errors": 6,
+      "warnings": 0,
+      "diagnosticCodes": {
+        "ESTC_MISSING_BUILTIN": 6
+      }
+    },
+    "esstr": {
+      "artifacts": 5,
+      "passed": 0,
+      "failed": 5,
+      "errors": 34,
+      "warnings": 1,
+      "diagnosticCodes": {
+        "ESTC_MISSING_BUILTIN": 21,
+        "ESTC_GLOBAL_PATCH": 12,
+        "ESTC_STRICT": 1,
+        "ESTC_NONFINITE": 1
+      }
+    },
+    "estimer": {
+      "artifacts": 2,
+      "passed": 0,
+      "failed": 2,
+      "errors": 8,
+      "warnings": 0,
+      "diagnosticCodes": {
+        "ESTC_MISSING_BUILTIN": 6,
+        "ESTC_GLOBAL_PATCH": 2
+      }
+    }
+  },
+  "artifacts": [
+    {
+      "project": "eson",
+      "label": "standalone",
+      "kind": "standalone",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 8,
+      "warnings": 4,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_UNDEFINED",
+          "message": "undefined is writable in ES3; prefer void 0 when identity matters",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.jsx",
+          "line": 1189,
+          "column": 6,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.jsx",
+          "line": 1190,
+          "column": 6,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.jsx",
+          "line": 1191,
+          "column": 6,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_JSON",
+          "message": "JSON global is not universal in ExtendScript; bundle or verify an implementation",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.jsx",
+          "line": 424,
+          "column": 34,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.jsx",
+          "line": 272,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.jsx",
+          "line": 283,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.jsx",
+          "line": 286,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.jsx",
+          "line": 293,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.jsx",
+          "line": 303,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.jsx",
+          "line": 304,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.jsx",
+          "line": 305,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"native\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.jsx",
+          "line": 1904,
+          "column": 10,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "eson",
+      "label": "vendor",
+      "kind": "vendor",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 8,
+      "warnings": 8,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_UNDEFINED",
+          "message": "undefined is writable in ES3; prefer void 0 when identity matters",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 1189,
+          "column": 6,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 1190,
+          "column": 6,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 1191,
+          "column": 6,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_JSON",
+          "message": "JSON global is not universal in ExtendScript; bundle or verify an implementation",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 424,
+          "column": 34,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_JSON",
+          "message": "JSON global is not universal in ExtendScript; bundle or verify an implementation",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 2066,
+          "column": 14,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_JSON",
+          "message": "JSON global is not universal in ExtendScript; bundle or verify an implementation",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 2066,
+          "column": 38,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_JSON",
+          "message": "JSON global is not universal in ExtendScript; bundle or verify an implementation",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 2067,
+          "column": 3,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_JSON",
+          "message": "JSON global is not universal in ExtendScript; bundle or verify an implementation",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 2068,
+          "column": 3,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 272,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 283,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 286,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 293,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 303,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 304,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 305,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"native\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\vendor-eson.js",
+          "line": 1904,
+          "column": 10,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "eson",
+      "label": "runtime",
+      "kind": "runtime",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON-runtime.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 4,
+      "warnings": 1,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_UNDEFINED",
+          "message": "undefined is writable in ES3; prefer void 0 when identity matters",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON-runtime.jsx",
+          "line": 183,
+          "column": 42,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_STRICT",
+          "message": "strict-mode directive found in emitted JSX",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON-runtime.jsx",
+          "line": 1,
+          "column": 1,
+          "hint": "Remove bundler-generated strict directives for the conservative ExtendScript pipeline."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON-runtime.jsx",
+          "line": 3,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON-runtime.jsx",
+          "line": 4,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON-runtime.jsx",
+          "line": 5,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "eson",
+      "label": "facade",
+      "kind": "facade",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 11,
+      "warnings": 4,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_UNDEFINED",
+          "message": "undefined is writable in ES3; prefer void 0 when identity matters",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 1189,
+          "column": 6,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 1190,
+          "column": 6,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 1191,
+          "column": 6,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_JSON",
+          "message": "JSON global is not universal in ExtendScript; bundle or verify an implementation",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 424,
+          "column": 34,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 272,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 283,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 286,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 293,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 303,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 304,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 305,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"native\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 1904,
+          "column": 10,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"native\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 2083,
+          "column": 25,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"native\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 2083,
+          "column": 40,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"native\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.facade.jsx",
+          "line": 2083,
+          "column": 76,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "eson",
+      "label": "accelerated",
+      "kind": "accelerated",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 18,
+      "warnings": 4,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_UNDEFINED",
+          "message": "undefined is writable in ES3; prefer void 0 when identity matters",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 2287,
+          "column": 6,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 2288,
+          "column": 6,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 2289,
+          "column": 6,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_JSON",
+          "message": "JSON global is not universal in ExtendScript; bundle or verify an implementation",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 1522,
+          "column": 34,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 34,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 45,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 48,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 55,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 65,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 66,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 67,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 1370,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 1381,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 1384,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 1391,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 1401,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 1402,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 1403,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"native\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 3002,
+          "column": 10,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"native\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 3181,
+          "column": 25,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"native\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 3181,
+          "column": 40,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"native\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eson\\dist\\ESON.accel.jsx",
+          "line": 3181,
+          "column": 76,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esarr",
+      "label": "standalone",
+      "kind": "standalone",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 4,
+      "warnings": 2,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.jsx",
+          "line": 1083,
+          "column": 83,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.jsx",
+          "line": 1083,
+          "column": 94,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.jsx",
+          "line": 2,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.jsx",
+          "line": 12,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.jsx",
+          "line": 13,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.jsx",
+          "line": 14,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esarr",
+      "label": "vendor",
+      "kind": "vendor",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\vendor-esarr.js",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 4,
+      "warnings": 2,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\vendor-esarr.js",
+          "line": 1083,
+          "column": 83,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\vendor-esarr.js",
+          "line": 1083,
+          "column": 94,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\vendor-esarr.js",
+          "line": 2,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\vendor-esarr.js",
+          "line": 12,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\vendor-esarr.js",
+          "line": 13,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\vendor-esarr.js",
+          "line": 14,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esarr",
+      "label": "runtime",
+      "kind": "runtime",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR-runtime.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 5,
+      "warnings": 2,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR-runtime.jsx",
+          "line": 1032,
+          "column": 83,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR-runtime.jsx",
+          "line": 1032,
+          "column": 94,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_STRICT",
+          "message": "strict-mode directive found in emitted JSX",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR-runtime.jsx",
+          "line": 1,
+          "column": 1,
+          "hint": "Remove bundler-generated strict directives for the conservative ExtendScript pipeline."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR-runtime.jsx",
+          "line": 3,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR-runtime.jsx",
+          "line": 4,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR-runtime.jsx",
+          "line": 5,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_PROPERTY",
+          "message": "unquoted object-literal property \"with\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR-runtime.jsx",
+          "line": 143,
+          "column": 5,
+          "hint": "Quote the key or let the compatibility re-emitter quote it."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esarr",
+      "label": "facade",
+      "kind": "facade",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.facade.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 4,
+      "warnings": 2,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.facade.jsx",
+          "line": 1083,
+          "column": 83,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.facade.jsx",
+          "line": 1083,
+          "column": 94,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.facade.jsx",
+          "line": 2,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.facade.jsx",
+          "line": 12,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.facade.jsx",
+          "line": 13,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.facade.jsx",
+          "line": 14,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esarr",
+      "label": "accelerated",
+      "kind": "accelerated",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 11,
+      "warnings": 2,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+          "line": 2181,
+          "column": 83,
+          "hint": ""
+        },
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+          "line": 2181,
+          "column": 94,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+          "line": 34,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+          "line": 45,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+          "line": 48,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+          "line": 55,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+          "line": 65,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+          "line": 66,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+          "line": 67,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+          "line": 1100,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+          "line": 1110,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+          "line": 1111,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esarr\\dist\\ESARR.accel.jsx",
+          "line": 1112,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esb64",
+      "label": "standalone",
+      "kind": "standalone",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 7,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.jsx",
+          "line": 2,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.jsx",
+          "line": 13,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.jsx",
+          "line": 16,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.jsx",
+          "line": 23,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.jsx",
+          "line": 33,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.jsx",
+          "line": 34,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.jsx",
+          "line": 35,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esb64",
+      "label": "vendor",
+      "kind": "vendor",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\vendor-esb64.js",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 7,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\vendor-esb64.js",
+          "line": 2,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\vendor-esb64.js",
+          "line": 13,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\vendor-esb64.js",
+          "line": 16,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\vendor-esb64.js",
+          "line": 23,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\vendor-esb64.js",
+          "line": 33,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\vendor-esb64.js",
+          "line": 34,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\vendor-esb64.js",
+          "line": 35,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esb64",
+      "label": "runtime",
+      "kind": "runtime",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64-runtime.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 4,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_STRICT",
+          "message": "strict-mode directive found in emitted JSX",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64-runtime.jsx",
+          "line": 1,
+          "column": 1,
+          "hint": "Remove bundler-generated strict directives for the conservative ExtendScript pipeline."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64-runtime.jsx",
+          "line": 3,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64-runtime.jsx",
+          "line": 4,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64-runtime.jsx",
+          "line": 5,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esb64",
+      "label": "facade",
+      "kind": "facade",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.facade.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 7,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.facade.jsx",
+          "line": 2,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.facade.jsx",
+          "line": 13,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.facade.jsx",
+          "line": 16,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.facade.jsx",
+          "line": 23,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.facade.jsx",
+          "line": 33,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.facade.jsx",
+          "line": 34,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.facade.jsx",
+          "line": 35,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esb64",
+      "label": "accelerated",
+      "kind": "accelerated",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 14,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 34,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 45,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 48,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 55,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 65,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 66,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 67,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 1100,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 1111,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 1114,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 1121,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 1131,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 1132,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esb64\\dist\\ESB64.accel.jsx",
+          "line": 1133,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "eschars",
+      "label": "standalone",
+      "kind": "standalone",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 7,
+      "warnings": 1,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.jsx",
+          "line": 367,
+          "column": 23,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.jsx",
+          "line": 2,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.jsx",
+          "line": 13,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.jsx",
+          "line": 16,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.jsx",
+          "line": 23,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.jsx",
+          "line": 33,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.jsx",
+          "line": 34,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.jsx",
+          "line": 35,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "eschars",
+      "label": "facade",
+      "kind": "facade",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.facade.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 7,
+      "warnings": 1,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.facade.jsx",
+          "line": 367,
+          "column": 23,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.facade.jsx",
+          "line": 2,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.facade.jsx",
+          "line": 13,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.facade.jsx",
+          "line": 16,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.facade.jsx",
+          "line": 23,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.facade.jsx",
+          "line": 33,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.facade.jsx",
+          "line": 34,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.facade.jsx",
+          "line": 35,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "eschars",
+      "label": "accelerated",
+      "kind": "accelerated",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 14,
+      "warnings": 1,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 1355,
+          "column": 23,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 34,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 45,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 48,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 55,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 65,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 66,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 67,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 990,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 1001,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 1004,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 1011,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 1021,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 1022,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eschars\\dist\\ESCHARS.accel.jsx",
+          "line": 1023,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "eshttp",
+      "label": "standalone",
+      "kind": "standalone",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 14,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 11,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 22,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 25,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 32,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 42,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 43,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 44,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 414,
+          "column": 15,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 2827,
+          "column": 5,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 2837,
+          "column": 5,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 2976,
+          "column": 5,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"default\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 3000,
+          "column": 29,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"default\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 3000,
+          "column": 54,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"default\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp.jsx",
+          "line": 3000,
+          "column": 99,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "eshttp",
+      "label": "native-accelerator",
+      "kind": "accelerated",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 21,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 35,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 46,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 49,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 56,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 66,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 67,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 68,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 1110,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 1121,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 1124,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 1131,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 1141,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 1142,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 1143,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 1513,
+          "column": 15,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 3926,
+          "column": 5,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 3936,
+          "column": 5,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 4075,
+          "column": 5,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"default\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 4099,
+          "column": 29,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"default\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 4099,
+          "column": 54,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_ES3_RESERVED_DOT_PROPERTY",
+          "message": "dot-property name \"default\" is reserved in strict ES3",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\eshttp\\dist\\eshttp-native-accel.jsx",
+          "line": 4099,
+          "column": 99,
+          "hint": "Use bracket access in emitted JSX; TypeScript source may stay ergonomic because the compatibility re-emitter rewrites this form."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esrand",
+      "label": "standalone",
+      "kind": "standalone",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esrand\\dist\\ESRAND.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 3,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esrand\\dist\\ESRAND.jsx",
+          "line": 2,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esrand\\dist\\ESRAND.jsx",
+          "line": 3,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esrand\\dist\\ESRAND.jsx",
+          "line": 4,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esrand",
+      "label": "vendor",
+      "kind": "vendor",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esrand\\dist\\vendor-esrand.js",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 3,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esrand\\dist\\vendor-esrand.js",
+          "line": 2,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esrand\\dist\\vendor-esrand.js",
+          "line": 3,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esrand\\dist\\vendor-esrand.js",
+          "line": 4,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esstr",
+      "label": "standalone",
+      "kind": "standalone",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 4,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.jsx",
+          "line": 2,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.jsx",
+          "line": 12,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.jsx",
+          "line": 13,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.jsx",
+          "line": 14,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esstr",
+      "label": "vendor",
+      "kind": "vendor",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\vendor-esstr.js",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 4,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\vendor-esstr.js",
+          "line": 2,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\vendor-esstr.js",
+          "line": 12,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\vendor-esstr.js",
+          "line": 13,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\vendor-esstr.js",
+          "line": 14,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esstr",
+      "label": "runtime",
+      "kind": "runtime",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR-runtime.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 4,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_STRICT",
+          "message": "strict-mode directive found in emitted JSX",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR-runtime.jsx",
+          "line": 1,
+          "column": 1,
+          "hint": "Remove bundler-generated strict directives for the conservative ExtendScript pipeline."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR-runtime.jsx",
+          "line": 3,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR-runtime.jsx",
+          "line": 4,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR-runtime.jsx",
+          "line": 5,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esstr",
+      "label": "facade",
+      "kind": "facade",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.facade.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 4,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.facade.jsx",
+          "line": 2,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.facade.jsx",
+          "line": 12,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.facade.jsx",
+          "line": 13,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.facade.jsx",
+          "line": 14,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "esstr",
+      "label": "accelerated",
+      "kind": "accelerated",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 18,
+      "warnings": 1,
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "code": "ESTC_NONFINITE",
+          "message": "non-finite token present; guard serialization and geometry paths",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 1355,
+          "column": 23,
+          "hint": ""
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 34,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 45,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 48,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 55,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 65,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 66,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 67,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.defineProperty\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 990,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyDescriptor\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 1001,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Object.getOwnPropertyNames\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 1004,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 1011,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 1021,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 1022,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 1023,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 1457,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 1467,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 1468,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\esstr\\dist\\ESSTR.accel.jsx",
+          "line": 1469,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "estimer",
+      "label": "standalone",
+      "kind": "standalone",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\estimer\\dist\\ESTIMER.jsx",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 4,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\estimer\\dist\\ESTIMER.jsx",
+          "line": 2,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\estimer\\dist\\ESTIMER.jsx",
+          "line": 12,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\estimer\\dist\\ESTIMER.jsx",
+          "line": 13,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\estimer\\dist\\ESTIMER.jsx",
+          "line": 14,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    },
+    {
+      "project": "estimer",
+      "label": "vendor",
+      "kind": "vendor",
+      "path": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\estimer\\dist\\vendor-estimer.js",
+      "mode": "conservative",
+      "exists": true,
+      "ok": false,
+      "errors": 4,
+      "warnings": 0,
+      "diagnostics": [
+        {
+          "severity": "error",
+          "code": "ESTC_GLOBAL_PATCH",
+          "message": "persistent built-in mutation \"Function.prototype.bind\" requires an explicit project contract",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\estimer\\dist\\vendor-estimer.js",
+          "line": 2,
+          "column": 3,
+          "hint": "Reusable ExtendScript libraries share a persistent engine. Prefer bundle-local helpers; polyfill libraries must enumerate intentional mutations in allowedGlobalPatches."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.defineProperty is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\estimer\\dist\\vendor-estimer.js",
+          "line": 12,
+          "column": 19,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyDescriptor is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\estimer\\dist\\vendor-estimer.js",
+          "line": 13,
+          "column": 26,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        },
+        {
+          "severity": "error",
+          "code": "ESTC_MISSING_BUILTIN",
+          "message": "Object.getOwnPropertyNames is absent or version-sensitive in ExtendScript; provide an explicit verified implementation or rewrite",
+          "file": "C:\\Program Files\\Adobe\\Adobe Illustrator 2026\\Presets\\en_US\\Scripts\\estimer\\dist\\vendor-estimer.js",
+          "line": 14,
+          "column": 27,
+          "hint": "Bracket notation does not make a missing runtime API available. A typeof feature guard is allowed when a verified fallback exists."
+        }
+      ],
+      "live": null
+    }
+  ],
+  "note": "Workspace audit is report-first. A failure does not mutate or rebuild nested projects."
+}

@@ -1,0 +1,19 @@
+{
+  "primary": {
+    "name": "types-for-adobe",
+    "version": "7.2.6",
+    "defaultIllustratorProfile": "Illustrator/2022",
+    "role": "compile-time host API declarations",
+    "repository": "https://github.com/docsforadobe/Types-for-Adobe",
+    "caveat": "The project states some declarations are generated from scripting dictionaries and can be inaccurate."
+  },
+  "adobeSample": {
+    "repository": "https://github.com/Adobe-CEP/Samples",
+    "path": "TypeScript/typings/ExtendScript.d.ts",
+    "blobSha": "40ee27eaa15abd98abbb126ae44f829f42f2b59a",
+    "role": "pinned reference/parity source; not merged into the default compiler environment because it overlaps Types-for-Adobe globals"
+  },
+  "localVerifiedOverlay": {
+    "role": "project-supplied .d.ts files for current-runtime corrections/additions verified against Adobe docs, COM inventory, or live Illustrator"
+  }
+}
