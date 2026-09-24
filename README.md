@@ -72,6 +72,9 @@ Bounded local IPC for scripting hosts and native plug-ins.
 **[ESTC](https://github.com/thelabcorner/estc)**  
 TypeScript-to-ExtendScript build, compatibility, and live-parse tooling.
 
+**[ESDB](https://github.com/thelabcorner/esdb)**  
+Native state and durable storage for Adobe tooling.
+
 **ESOBF** <sub>coming soon</sub>  
 Obfuscation for hardened JSX distribution.
 
