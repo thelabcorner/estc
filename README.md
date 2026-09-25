@@ -150,48 +150,26 @@ ESTC makes each boundary explicit and independently testable.
 
 ### Pipeline
 
-```text
-TypeScript source
-    |
-    | 1. Types-for-Adobe + verified project overlays
-    | 2. TypeScript AST ExtendScript source lint
-    v
-esbuild IIFE bundle (ES5)
-    |
-    | 3. localize known generated helper dependencies inside the bundle
-    | 4. remove generated strict-mode prologues
-    v
-Project prelude + ESTC shims
-    |
-    | 5. optional ESPACK build/manifest merge
-    |    - normal inline mode: current ESB64 runtime supplied through
-    |      ESB64_RUNTIME_PATH when one is resolvable
-    |    - shared mode: one ESB64 runtime + --defer-b64 when supported
-    v
-UglifyJS ExtendScript-safe compatibility re-emission
-    |
-    | compress:false / mangle:false
-    | reserved keys quoted, ASCII-only, explicit braces/semicolons
-    | AST-scoped Illustrator switch repair
-    v
-Pre-distribution ESTC gate
-    |
-    | 6. strict ES3 grammar + reserved-property checks
-    | 7. runtime/global-patch hazard checks
-    v
-Optional ESMIN conservative minification
-    |
-    | 8. complete assembled artifact; includes are not re-resolved here
-    v
-Post-ESMIN ESTC gate
-    |
-    | 9. re-check the actual distributable bytes
-    v
-Optional Illustrator compile-only live parse
-    |
-    | 10. final artifact only
-    v
-Project-specific runtime / differential tests
+```mermaid
+flowchart TD
+    Source["TypeScript source"]
+    Bundle["esbuild IIFE bundle (ES5)"]
+    Prelude["Project prelude + ESTC shims"]
+    Reemit["UglifyJS ExtendScript-safe<br/>compatibility re-emission"]
+    PreGate["Pre-distribution ESTC gate"]
+    ESMin["Optional ESMIN<br/>conservative minification"]
+    PostGate["Post-ESMIN ESTC gate"]
+    Live["Optional Illustrator<br/>compile-only live parse"]
+    Runtime["Project-specific runtime /<br/>differential tests"]
+
+    Source -->|"1. Types-for-Adobe + verified project overlays<br/>2. TypeScript AST ExtendScript source lint"| Bundle
+    Bundle -->|"3. Localize known generated helper dependencies<br/>4. Remove generated strict-mode prologues"| Prelude
+    Prelude -->|"5. Optional ESPACK build / manifest merge<br/>Inline: resolved ESB64 runtime via ESB64_RUNTIME_PATH<br/>Shared: one ESB64 runtime + --defer-b64 when supported"| Reemit
+    Reemit -->|"compress:false / mangle:false<br/>Reserved keys quoted, ASCII-only, explicit braces / semicolons<br/>AST-scoped Illustrator switch repair"| PreGate
+    PreGate -->|"6. Strict ES3 grammar + reserved-property checks<br/>7. Runtime / global-patch hazard checks"| ESMin
+    ESMin -->|"8. Complete assembled artifact<br/>Includes are not re-resolved here"| PostGate
+    PostGate -->|"9. Re-check the actual distributable bytes"| Live
+    Live -->|"10. Final artifact only"| Runtime
 ```
 
 ESPACK therefore always composes **before** ESMIN. ESTC treats both tools as transformation boundaries rather than trust boundaries: tool output must pass the same conservative gate as ESTC's own output. A type declaration is not parser evidence; parser evidence is not runtime-behavior evidence.
@@ -647,34 +625,46 @@ Never label a static pass as a live Illustrator runtime pass.
 
 ## Repository layout
 
-```text
-estc/
-├── bin/
-│   └── estc.mjs                  CLI entry
-├── data/
-│   └── host-profiles/            version-scoped host observations
-├── evidence/                     reserved-word, host, and workspace evidence
-├── examples/
-│   └── extendscript.config.mjs   reference project configuration
-├── projects/
-│   ├── esrand.config.mjs         ecosystem integration fixture
-│   └── workspace-audit.json      optional sibling-project audit manifest
-├── scripts/
-│   ├── illustrator-probe.ps1     live host probe support
-│   └── sibling-integration-smoke.mjs
-├── src/
-│   ├── build.mjs                 config-driven compiler/distribution pipeline
-│   ├── check-jsx.mjs             emitted-JSX static gate
-│   ├── integrations/             ESPACK/ESMIN discovery + process adapters
-│   └── ...                       lint, normalization, live-host, provenance modules
-├── tests/
-│   ├── fixtures/                 portable tool/integration fixtures
-│   └── static.test.mjs           37-case static/build/integration suite
-├── types/                         verified local declaration overlays
-├── vendor/
-│   └── adobe-cep/                pinned Adobe CEP declaration reference + license
-├── package.json
-└── README.md
+```mermaid
+flowchart TD
+    Repo["estc/"]
+
+    Repo --> Bin["bin/"]
+    Bin --> CLI["estc.mjs<br/>CLI entry"]
+
+    Repo --> Data["data/"]
+    Data --> Profiles["host-profiles/<br/>Version-scoped host observations"]
+
+    Repo --> Evidence["evidence/<br/>Reserved-word, host, and workspace evidence"]
+
+    Repo --> Examples["examples/"]
+    Examples --> Config["extendscript.config.mjs<br/>Reference project configuration"]
+
+    Repo --> Projects["projects/"]
+    Projects --> ESRand["esrand.config.mjs<br/>Ecosystem integration fixture"]
+    Projects --> Audit["workspace-audit.json<br/>Optional sibling-project audit manifest"]
+
+    Repo --> Scripts["scripts/"]
+    Scripts --> Probe["illustrator-probe.ps1<br/>Live host probe support"]
+    Scripts --> Smoke["sibling-integration-smoke.mjs"]
+
+    Repo --> Src["src/"]
+    Src --> Build["build.mjs<br/>Config-driven compiler / distribution pipeline"]
+    Src --> Check["check-jsx.mjs<br/>Emitted-JSX static gate"]
+    Src --> Integrations["integrations/<br/>ESPACK / ESMIN discovery + process adapters"]
+    Src --> Modules["...<br/>Lint, normalization, live-host, provenance modules"]
+
+    Repo --> Tests["tests/"]
+    Tests --> Fixtures["fixtures/<br/>Portable tool / integration fixtures"]
+    Tests --> Static["static.test.mjs<br/>37-case static / build / integration suite"]
+
+    Repo --> Types["types/<br/>Verified local declaration overlays"]
+
+    Repo --> Vendor["vendor/"]
+    Vendor --> Adobe["adobe-cep/<br/>Pinned Adobe CEP declaration reference + license"]
+
+    Repo --> Package["package.json"]
+    Repo --> Readme["README.md"]
 ```
 
 ---
