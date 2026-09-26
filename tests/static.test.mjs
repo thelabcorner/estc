@@ -76,6 +76,48 @@ test('safe quoted/bracket public API passes strict ES3 gate', () => {
   assert.equal(result.ok, true, JSON.stringify(result.diagnostics, null, 2));
 });
 
+test('esbuild export/CommonJS helpers are rejected even when descriptor access is feature-guarded', () => {
+  const result = check([
+    '#target illustrator',
+    'var __defProp=function(obj,prop,desc){',
+    '  if(typeof Object["defineProperty"]==="function")return Object["defineProperty"](obj,prop,desc);',
+    '  throw new Error("ESTC: Object.defineProperty is required by the generated esbuild module helper");',
+    '};',
+    'var __export=function(target,all){return target;};',
+    'var __toCommonJS=function(mod){return mod;};'
+  ].join('\n'));
+  assert.equal(result.ok, false);
+  assert.equal(codes(result).has('ESTC_ESBUILD_MODULE_HELPER'), true);
+});
+
+test('future-executable embedded bundle strings are scanned for esbuild module helpers', () => {
+  const result = check([
+    '#target illustrator',
+    'var payload="var __copyProps=function(to,from){return to;};var __toCommonJS=function(mod){return mod;};";'
+  ].join('\n'));
+  assert.equal(result.ok, false);
+  assert.equal(codes(result).has('ESTC_ESBUILD_MODULE_HELPER'), true);
+});
+
+test('comments mentioning esbuild helper names do not trip the artifact guard', () => {
+  const result = check([
+    '#target illustrator',
+    '// stale bundles used to contain: var __toCommonJS = ...',
+    '/* and __defProp = ... */',
+    'var safe=1;'
+  ].join('\n'));
+  assert.equal(result.ok, true, JSON.stringify(result.diagnostics, null, 2));
+});
+
+test('persistent global polyfills are rejected even when embedded as future-executable code', () => {
+  const result = check([
+    '#target illustrator',
+    'var payload="if(!Object.defineProperty){Object.defineProperty=function(o,k,d){o[k]=d.value;};}";'
+  ].join('\n'));
+  assert.equal(result.ok, false);
+  assert.equal(codes(result).has('ESTC_EMBEDDED_GLOBAL_PATCH'), true);
+});
+
 test('runtime reserved variable is rejected', () => {
   const result = check('#target illustrator\nvar float = 1;');
   assert.equal(result.ok, false);
@@ -409,8 +451,16 @@ test('build fixture completes full static pipeline without mutating host built-i
   assert.equal(fs.existsSync(result.outfile), true);
   const emitted = fs.readFileSync(result.outfile, 'utf8');
   assert.equal(emitted.startsWith('#target illustrator\n'), true);
+  // Export-free side-effect entry: the public facade is assembled with string
+  // keys, so esbuild emits no export/CommonJS module-helper topology and the
+  // compatibility transform has nothing to rewrite. The facade is attached to
+  // an undeclared global as a plain object literal with string keys.
+  assert.doesNotMatch(emitted, /\b__(?:defProp|getOwnPropDesc|getOwnPropNames|export|copyProps|toCommonJS)\b/);
   assert.doesNotMatch(emitted, /\.float\b/);
-  assert.match(emitted, /\[["']float["']\]/);
+  assert.match(emitted, /FIXTURE_FACADE\s*=\s*\{/);
+  assert.match(emitted, /"floating"/);
+  assert.match(emitted, /"first"/);
+  assert.match(emitted, /"makeFacade"/);
   assert.doesNotMatch(emitted, /var\s+[A-Za-z_$][\w$]*\s*=\s*Object\.defineProperty/);
   assert.doesNotMatch(emitted, /var\s+[A-Za-z_$][\w$]*\s*=\s*Object\.getOwnPropertyDescriptor/);
   assert.doesNotMatch(emitted, /var\s+[A-Za-z_$][\w$]*\s*=\s*Object\.getOwnPropertyNames/);
@@ -419,9 +469,24 @@ test('build fixture completes full static pipeline without mutating host built-i
   assert.doesNotMatch(emitted, /Function\.prototype\.bind\s*=/);
   assert.equal(result.compatibilityTransforms.length, 1);
   assert.equal(result.compatibilityTransforms[0].name, 'esbuild');
-  assert.equal(result.compatibilityTransforms[0].changed, true);
+  assert.equal(result.compatibilityTransforms[0].changed, false);
   const checked = checkJsxText(emitted, { file: result.outfile });
   assert.equal(checked.ok, true, JSON.stringify(checked.diagnostics, null, 2));
+});
+
+test('export/CommonJS helper-regression fixture is rejected by the artifact guard', async () => {
+  const cwd = path.join(FIXTURES, 'build');
+  const config = await loadConfig({
+    cwd,
+    configPath: 'extendscript.helper-regression.config.mjs'
+  });
+  await assert.rejects(
+    () => buildProject(config),
+    /Pre-distribution JSX compatibility check failed/
+  );
+  // The rejected build never commits its outfile (transactional gate).
+  const outfile = config.outfile;
+  assert.equal(fs.existsSync(outfile), false);
 });
 
 

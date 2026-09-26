@@ -1,47 +1,109 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
 import { stripAdobeDirectives } from './directives.mjs';
 import { reservedData } from './reserved.mjs';
+import { withIllustratorV2 } from './comtool-v2.mjs';
 
-const HERE = path.dirname(fileURLToPath(import.meta.url));
-const PS_SCRIPT = path.join(HERE, '..', 'scripts', 'illustrator-probe.ps1');
+function failed(error) {
+  return {
+    ok: false,
+    unavailable: error && error.unavailable === true,
+    error: error && error.message ? error.message : String(error)
+  };
+}
 
-function runPowerShell(mode, file, launch) {
-  if (process.platform !== 'win32') {
-    return { ok: false, unavailable: true, error: 'Live Illustrator verification is Windows-only in this toolchain.' };
+function executeProbe(source, options = {}) {
+  try {
+    return withIllustratorV2({
+      launch: options.launch === true,
+      target: options.target || null,
+      pipe: options.pipe || null,
+      leaseWaitMs: options.leaseWaitMs,
+      leaseTtlMs: options.leaseTtlMs
+    }, (session) => {
+      const value = session.eval(source, {
+        timeoutMs: options.timeoutMs || 180000
+      });
+      return {
+        ok: true,
+        raw: String(value === undefined || value === null ? '' : value),
+        targetId: session.targetId,
+        transport: 'COM Tool V2 script.eval'
+      };
+    });
+  } catch (error) {
+    return failed(error);
   }
-  const args = ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', PS_SCRIPT, '-Mode', mode, '-Path', file];
-  if (launch) args.push('-Launch');
-  let last = null;
-  for (const exe of ['powershell.exe', 'pwsh.exe']) {
-    const r = spawnSync(exe, args, { encoding: 'utf8', windowsHide: true });
-    last = r;
-    if (!r.error || r.error.code !== 'ENOENT') {
-      const raw = String(r.stdout || '').trim();
-      if (r.status !== 0) return { ok: false, raw, error: String(r.stderr || r.error || 'PowerShell probe failed').trim() };
-      return { ok: raw.startsWith('OK|'), raw };
-    }
+}
+
+function executeFileProbe(source, options = {}) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'estc-live-parse-'));
+  const file = path.join(dir, 'parse-probe.jsx');
+  fs.writeFileSync(file, source, 'utf8');
+  try {
+    return withIllustratorV2({
+      launch: options.launch === true,
+      target: options.target || null,
+      pipe: options.pipe || null,
+      leaseWaitMs: options.leaseWaitMs,
+      leaseTtlMs: options.leaseTtlMs
+    }, (session) => {
+      const value = session.runFile(file, {
+        timeoutMs: options.timeoutMs || 180000
+      });
+      return {
+        ok: true,
+        raw: String(value === undefined || value === null ? '' : value),
+        targetId: session.targetId,
+        transport: 'COM Tool V2 script.runFile'
+      };
+    });
+  } catch (error) {
+    return failed(error);
+  } finally {
+    try { fs.rmSync(dir, { recursive: true, force: true }); } catch {}
   }
-  return { ok: false, unavailable: true, error: String(last && last.error ? last.error : 'PowerShell not found') };
 }
 
 export function runLiveParse(text, options = {}) {
   const body = stripAdobeDirectives(text).body;
-  const temp = path.join(os.tmpdir(), 'estc-parse-' + process.pid + '-' + Date.now() + '.js');
-  fs.writeFileSync(temp, body, 'utf8');
-  try {
-    const result = runPowerShell('Parse', temp, options.launch === true);
-    if (result.ok) {
-      const parts = result.raw.split('|');
-      return { ok: true, appVersion: parts[1] || '', engineVersion: parts[2] || '', raw: result.raw };
-    }
-    return result;
-  } finally {
-    try { fs.unlinkSync(temp); } catch {}
+  // Parse the complete project body inside a function expression, exactly as
+  // the old DoJavaScript probe did, but never invoke that function. The outer
+  // IIFE returns only host/version evidence through COM Tool V2.
+  const source = [
+    '(function(){',
+    'void function(){',
+    body,
+    '};',
+    'return "OK|" + app.version + "|" + $.version;',
+    '}())'
+  ].join('\n');
+
+  // Use a SHA-bound temporary file rather than --expr so large accelerated
+  // bundles never approach Windows' process command-line limit. The wrapper
+  // still leaves the project body inside an uninvoked function: runFile
+  // executes only the outer parse probe, not the artifact itself.
+  const result = executeFileProbe(source, options);
+  if (!result.ok) return result;
+  if (!result.raw.startsWith('OK|')) {
+    return {
+      ok: false,
+      raw: result.raw,
+      error: 'Illustrator parse probe returned an unexpected result.',
+      targetId: result.targetId,
+      transport: result.transport
+    };
   }
+  const parts = result.raw.split('|');
+  return {
+    ok: true,
+    appVersion: parts[1] || '',
+    engineVersion: parts[2] || '',
+    raw: result.raw,
+    targetId: result.targetId,
+    transport: result.transport
+  };
 }
 
 export function runHostProbe(options = {}) {
@@ -82,38 +144,42 @@ export function runHostProbe(options = {}) {
   lines.push('return "OK|"+app.version+"|"+$.version+"|parse:"+parseBits.join(",")+"|runtime:"+runtimeBits.join(",");');
   lines.push('}())');
 
-  const temp = path.join(os.tmpdir(), 'estc-host-' + process.pid + '-' + Date.now() + '.jsx');
-  fs.writeFileSync(temp, lines.join('\n'), 'utf8');
-  try {
-    const result = runPowerShell('ExecuteProbe', temp, options.launch === true);
-    if (!result.ok) return result;
-    const parts = result.raw.split('|');
-    const parse = {};
-    const runtime = {};
-    for (let i = 3; i < parts.length; i++) {
-      const target = parts[i].startsWith('parse:') ? parse :
-        (parts[i].startsWith('runtime:') ? runtime : null);
-      if (!target) continue;
-      const payload = parts[i].slice(parts[i].indexOf(':') + 1);
-      if (!payload) continue;
-      for (const item of payload.split(',')) {
-        const eq = item.lastIndexOf('=');
-        if (eq > 0) target[item.slice(0, eq)] = item.slice(eq + 1) === '1';
-      }
-    }
+  const result = executeProbe(lines.join('\n'), options);
+  if (!result.ok) return result;
+  if (!result.raw.startsWith('OK|')) {
     return {
-      ok: true,
-      appVersion: parts[1] || '',
-      engineVersion: parts[2] || '',
-      generatedAt: new Date().toISOString(),
-      launcher: 'Illustrator COM DoJavaScript / ExecuteProbe',
-      parse,
-      runtime,
-      evidence: 'Fixed ESTC feature probe. Parser cases use Function constructor; runtime cases evaluate only built-in capability predicates.'
+      ok: false,
+      raw: result.raw,
+      error: 'Illustrator host probe returned an unexpected result.',
+      targetId: result.targetId,
+      transport: result.transport
     };
-  } finally {
-    try { fs.unlinkSync(temp); } catch {}
   }
+  const parts = result.raw.split('|');
+  const parse = {};
+  const runtime = {};
+  for (let i = 3; i < parts.length; i++) {
+    const target = parts[i].startsWith('parse:') ? parse :
+      (parts[i].startsWith('runtime:') ? runtime : null);
+    if (!target) continue;
+    const payload = parts[i].slice(parts[i].indexOf(':') + 1);
+    if (!payload) continue;
+    for (const item of payload.split(',')) {
+      const eq = item.lastIndexOf('=');
+      if (eq > 0) target[item.slice(0, eq)] = item.slice(eq + 1) === '1';
+    }
+  }
+  return {
+    ok: true,
+    appVersion: parts[1] || '',
+    engineVersion: parts[2] || '',
+    generatedAt: new Date().toISOString(),
+    launcher: result.transport,
+    targetId: result.targetId,
+    parse,
+    runtime,
+    evidence: 'Fixed ESTC feature probe through COM Tool V2. Parser cases use Function constructor; runtime cases evaluate only built-in capability predicates.'
+  };
 }
 
 export function runReservedProbe(options = {}) {
@@ -137,34 +203,40 @@ export function runReservedProbe(options = {}) {
   lines.push('out.push(defs[c][0]+":"+bits);}');
   lines.push('return "OK|"+out.join("|");');
   lines.push('}())');
-  const temp = path.join(os.tmpdir(), 'estc-reserved-' + process.pid + '-' + Date.now() + '.jsx');
-  fs.writeFileSync(temp, lines.join('\n'), 'utf8');
-  try {
-    const result = runPowerShell('ExecuteProbe', temp, options.launch === true);
-    if (!result.ok) return result;
-    const parts = result.raw.split('|');
-    const appVersion = parts[1] || '';
-    const engineVersion = parts[2] || '';
-    const matrix = {};
-    for (let p = 3; p < parts.length; p++) {
-      const idx = parts[p].indexOf(':');
-      if (idx < 0) continue;
-      const name = parts[p].slice(0, idx);
-      const bits = parts[p].slice(idx + 1);
-      const row = {};
-      for (let i = 0; i < words.length; i++) row[words[i]] = bits[i] === '1';
-      matrix[name] = row;
-    }
+
+  const result = executeProbe(lines.join('\n'), options);
+  if (!result.ok) return result;
+  if (!result.raw.startsWith('OK|')) {
     return {
-      ok: true,
-      appVersion,
-      engineVersion,
-      generatedAt: new Date().toISOString(),
-      words,
-      matrix,
-      evidence: 'Illustrator Function-constructor parse probe; project/document code was not executed.'
+      ok: false,
+      raw: result.raw,
+      error: 'Illustrator reserved-word probe returned an unexpected result.',
+      targetId: result.targetId,
+      transport: result.transport
     };
-  } finally {
-    try { fs.unlinkSync(temp); } catch {}
   }
+  const parts = result.raw.split('|');
+  const appVersion = parts[1] || '';
+  const engineVersion = parts[2] || '';
+  const matrix = {};
+  for (let p = 3; p < parts.length; p++) {
+    const idx = parts[p].indexOf(':');
+    if (idx < 0) continue;
+    const name = parts[p].slice(0, idx);
+    const bits = parts[p].slice(idx + 1);
+    const row = {};
+    for (let i = 0; i < words.length; i++) row[words[i]] = bits[i] === '1';
+    matrix[name] = row;
+  }
+  return {
+    ok: true,
+    appVersion,
+    engineVersion,
+    generatedAt: new Date().toISOString(),
+    launcher: result.transport,
+    targetId: result.targetId,
+    words,
+    matrix,
+    evidence: 'Illustrator Function-constructor parse probe through COM Tool V2; project/document code was not executed.'
+  };
 }

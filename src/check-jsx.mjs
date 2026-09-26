@@ -44,6 +44,51 @@ function maskStringsAndComments(source) {
   return out;
 }
 
+// Preserve string literal contents while removing comments. Final ExtendScript
+// artifacts can intentionally carry executable child bundles as strings (for
+// example, a self-extracting/composed payload that is eval'd later). The normal
+// lexical pass masks strings to avoid false positives in data, but packaging
+// hazards must also be detected inside those future-executable payloads.
+function maskCommentsOnly(source) {
+  const s = String(source);
+  let out = '';
+  let i = 0;
+  let state = 'code';
+  while (i < s.length) {
+    const c = s[i];
+    const n = s[i + 1];
+    if (state === 'code') {
+      if (c === '/' && n === '/') { out += '  '; i += 2; state = 'line'; continue; }
+      if (c === '/' && n === '*') { out += '  '; i += 2; state = 'block'; continue; }
+      if (c === '"') { out += c; i++; state = 'double'; continue; }
+      if (c === "'") { out += c; i++; state = 'single'; continue; }
+      out += c; i++; continue;
+    }
+    if (state === 'line') {
+      if (c === '\n') { out += '\n'; i++; state = 'code'; }
+      else { out += ' '; i++; }
+      continue;
+    }
+    if (state === 'block') {
+      if (c === '*' && n === '/') { out += '  '; i += 2; state = 'code'; }
+      else { out += c === '\n' ? '\n' : ' '; i++; }
+      continue;
+    }
+    if (state === 'single' || state === 'double') {
+      const quote = state === 'single' ? "'" : '"';
+      out += c;
+      i++;
+      if (c === '\\' && i < s.length) {
+        out += s[i];
+        i++;
+      } else if (c === quote) {
+        state = 'code';
+      }
+    }
+  }
+  return out;
+}
+
 const MISSING_BUILTINS = Object.freeze([
   'Number.isFinite', 'Number.isNaN', 'Array.isArray', 'Array.from', 'Object.assign',
   'Object.keys', 'Object.create', 'Object.defineProperty', 'Object.getOwnPropertyDescriptor',
@@ -335,6 +380,66 @@ export function checkJsxText(text, options = {}) {
   const stripped = stripAdobeDirectives(source);
   const body = stripped.body;
   const directives = stripped.directives;
+
+  // esbuild's export namespace/CommonJS bridge is not a viable ExtendScript
+  // runtime surface. Even when ESTC localizes its ES5 built-ins, the helper
+  // semantics still require property descriptors/own-property reflection that
+  // legacy Adobe engines do not provide. Reject the helper family itself so a
+  // future config cannot silently turn a repaired side-effect entry back into
+  // an exported namespace. Scan strings too: ESPACK/ESHTTP-style artifacts may
+  // carry code as data and execute it later. The module-helper topology is
+  // never allowed, even under an explicit global-patch contract, because it is
+  // a structural hazard rather than a single polyfill the project owns.
+  const payloadScan = maskCommentsOnly(body);
+  pushPatternDiagnostics(payloadScan, file, diagnostics, [
+    {
+      pattern: /\b(?:__defProp|__getOwnPropDesc|__getOwnPropNames|__export|__copyProps|__toCommonJS)\s*=/,
+      severity: 'error',
+      code: 'ESTC_ESBUILD_MODULE_HELPER',
+      message: 'esbuild export/CommonJS module helper survived into an ExtendScript artifact',
+      hint: 'Use an export-free side-effect entrypoint that assembles the public facade explicitly instead of exposing entry-point exports through globalName.'
+    },
+    {
+      pattern: /generated\s+esbuild\s+module\s+helper/i,
+      severity: 'error',
+      code: 'ESTC_ESBUILD_MODULE_HELPER',
+      message: 'localized esbuild module-helper fallback survived into an ExtendScript artifact',
+      hint: 'Localization cannot make descriptor/live-binding helpers portable to legacy ExtendScript; remove the exported entry-point namespace.'
+    }
+  ]);
+
+  // Persistent global polyfills are a separate, contract-governed hazard. The
+  // AST/scope-aware walk below (ESTC_GLOBAL_PATCH) already covers unbound
+  // real-code mutations and honors allowedGlobalPatches with shadowing
+  // awareness. This centralized lexical pass additionally catches the same two
+  // most dangerous members when they appear as future-executable payloads
+  // inside strings, and provides raw-mode (no-AST) coverage. It honors
+  // allowedGlobalPatches so an explicit project polyfill contract is not
+  // weakened: a member the project deliberately contracts to install is not
+  // re-flagged here, while the esbuild module-helper topology above remains
+  // unconditionally rejected.
+  const globalPatchRules = [];
+  if (!allowedGlobalPatches.has('Object.defineProperty')) {
+    globalPatchRules.push({
+      pattern: /Object(?:\.defineProperty|\s*\[\s*["']defineProperty["']\s*\])\s*=\s*function\b/,
+      severity: 'error',
+      code: 'ESTC_EMBEDDED_GLOBAL_PATCH',
+      message: 'artifact installs a persistent Object.defineProperty polyfill',
+      hint: 'Do not mutate shared Adobe engine built-ins. Use an export-free bundle boundary instead.'
+    });
+  }
+  if (!allowedGlobalPatches.has('Function.prototype.bind')) {
+    globalPatchRules.push({
+      pattern: /Function\.prototype\.bind\s*=\s*function\b/,
+      severity: 'error',
+      code: 'ESTC_EMBEDDED_GLOBAL_PATCH',
+      message: 'artifact installs a persistent Function.prototype.bind polyfill',
+      hint: 'Do not mutate shared Adobe engine built-ins. Keep compatibility helpers bundle-local or remove the module-helper requirement.'
+    });
+  }
+  if (globalPatchRules.length) {
+    pushPatternDiagnostics(payloadScan, file, diagnostics, globalPatchRules);
+  }
 
   if (requireTarget) {
     const escapedTarget = target.replace(/[.*+?^$(){}|[\]\\]/g, '\\$&');
